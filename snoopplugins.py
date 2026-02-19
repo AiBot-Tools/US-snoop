@@ -229,8 +229,23 @@ def module3():
 
 # Указать файл с логинами.
         elif Ya == '4':
-            print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
-            snoopbanner.donate()
+            print("\033[36m└──Введите путь к файлу с логинами\033[0m\n")
+            path_file = console.input("[cyan]File --->  [/cyan]")
+            if sys.platform == 'win32':
+                path_file = path_file.replace('"', '').strip()
+            else:
+                path_file = path_file.replace("'", "").strip()
+
+            try:
+                with open(path_file, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        login = line.strip()
+                        if login:
+                            listlogin.append(login)
+                parsingYa()
+            except Exception as e:
+                print(f"\033[31;1mОшибка чтения файла: {e}\033[0m")
+                ravno()
         else:
             print(Style.BRIGHT + Fore.RED + "└──Неверный выбор" + Style.RESET_ALL)
             ravno()
@@ -302,8 +317,9 @@ def module2():
                 break
                 sys.exit()
             if rGeo == '1' or rGeo == '2':
-                print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
-                snoopbanner.donate()
+                print("\033[31;1mFunctionality missing in codebase\033[0m\n")
+                #print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
+                #snoopbanner.donate()
             break
             sys.exit()
         else:
@@ -419,16 +435,18 @@ def module1():
 # Открываем GeoCity.
             elif dipbaza == "2" or dipbaza == "3":
                 while True:
-                    print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
-                    snoopbanner.donate()
+                    print("\033[31;1mFunctionality missing in codebase\033[0m\n")
+                    #print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
+                    #snoopbanner.donate()
                     break
 
                 break
 
 # Онлайн поиск.
             elif dipbaza == "1":
-                print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
-                snoopbanner.donate()
+                print("\033[31;1mFunctionality missing in codebase\033[0m\n")
+                #print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
+                #snoopbanner.donate()
                 break
 
 # Неверный выбор ключа при оффлайн/онлайн поиске. Выход.

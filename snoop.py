@@ -51,6 +51,14 @@ init(autoreset=True)
 console = Console()
 
 
+def premium():
+    pass
+
+
+def meta(cert=False):
+    pass
+
+
 ## Баннер и версия ПО.
 def version_snoop(vers, vers_code, demo_full):
     print(f"""\033[36m
@@ -125,7 +133,7 @@ MACOS = True if platform.system() == "Darwin" else False #поддержка mac
 
 E_MAIL = 'demo: snoopproject@protonmail.com'
 END_OF_LICENSE = (2027, 1, 1, 3, 0, 0, 0, 0, 0) #формат даты согласно международному стандарту ISO 8601: год-месяц-день.
-VERSION = version_snoop('v1.4.3', "s", "d")
+VERSION = version_snoop('v1.4.3', "s", "f")
 DIRPATH = mkdir_path()
 TIME_START = time.time()
 TIME_DATE = time.localtime()
@@ -312,7 +320,7 @@ def format_txt(text, k=False, m=False):
     try:
         return textwrap.fill(f"{gal}{text}", width=os.get_terminal_size()[0], subsequent_indent=" " * 3, initial_indent=indent_end)
     except OSError:
-        return "ERR"
+        return textwrap.fill(f"{gal}{text}", width=80, subsequent_indent=" " * 3, initial_indent=indent_end)
 
 
 ## Вывести на печать ошибки.
@@ -1060,7 +1068,11 @@ def autoclean():
 def license_snoop():
     with open('COPYRIGHT', 'r', encoding="utf8") as copyright:
         wl = 5 if WINDOWS and int(platform.win32_ver()[0]) < 10 else 4
-        cop = copyright.read().replace('=' * 80, "~" * (os.get_terminal_size()[0] - wl)).strip()
+        try:
+            ts = os.get_terminal_size()[0]
+        except OSError:
+            ts = 80
+        cop = copyright.read().replace('=' * 80, "~" * (ts - wl)).strip()
         console.print(Panel(cop, title='[bold white]COPYRIGHT[/bold white]',
                             style=STL(color="white", bgcolor="blue"),
                             border_style=STL(color="white", bgcolor="blue")))
@@ -1642,11 +1654,11 @@ def main_cli():
 
 
 ## Опция '-w'.
-    if args.web:
-        print("")
-        snoopbanner.logo("Функция '-w' доступна только пользователям Snoop full version...",
-                         color="\033[37m\033[44m", exit=False)
-        snoopbanner.donate()
+    #if args.web:
+    #    print("")
+    #    snoopbanner.logo("Функция '-w' доступна только пользователям Snoop full version...",
+    #                     color="\033[37m\033[44m", exit=False)
+    #    snoopbanner.donate()
 
 
 ## Опция '-b'. Проверить, существует ли альтернативная база данных, иначе default.
