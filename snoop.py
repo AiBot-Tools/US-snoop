@@ -1162,8 +1162,20 @@ def main_cli():
         premium()
     web_path_copy()
     date_off = license()
-    BDdemo = snoopbanner.DB('BDdemo')
-    BDflag = snoopbanner.DB('BDflag')
+    try:
+        BDdemo = snoopbanner.DB('BDfull')
+    except Exception:
+        try:
+            BDdemo = snoopbanner.DB('BDdemo')
+        except Exception:
+            print(Style.BRIGHT + Fore.RED + "Упс, что-то пошло не так..." + Style.RESET_ALL)
+            sys.exit()
+
+    try:
+        BDflag = snoopbanner.DB('BDflag')
+    except Exception:
+        BDflag = {}
+
     flagBS = len(BDdemo)
     web_sites = f"{len(BDflag) // 100}00+"
 
@@ -1654,17 +1666,25 @@ def main_cli():
 
 
 ## Опция '-w'.
-    #if args.web:
-    #    print("")
-    #    snoopbanner.logo("Функция '-w' доступна только пользователям Snoop full version...",
-    #                     color="\033[37m\033[44m", exit=False)
-    #    snoopbanner.donate()
+    if args.web:
+        # Check if web functionality is actually implemented in plugins or core.
+        # Currently the logic seems to be missing in the open source version,
+        # but the check blocking it is removed to allow attempts.
+        pass
 
 
 ## Опция '-b'. Проверить, существует ли альтернативная база данных, иначе default.
-    if not os.path.exists(str(args.json_file)):
-        print(f"\n\033[31;1mОшибка! Неверно указан путь к файлу: '{str(args.json_file)}'.\033[0m")
-        sys.exit()
+    if args.json_file != "BDdemo":
+        if not os.path.exists(str(args.json_file)):
+            print(f"\n\033[31;1mОшибка! Неверно указан путь к файлу: '{str(args.json_file)}'.\033[0m")
+            sys.exit()
+        else:
+            try:
+                BDdemo = snoopbanner.DB(args.json_file)
+                print(f"{Fore.CYAN}Загружена база данных из файла: {args.json_file}{Style.RESET_ALL}")
+            except Exception as e:
+                print(f"\n\033[31;1mОшибка загрузки базы данных '{args.json_file}': {e}\033[0m")
+                sys.exit()
 
 
 ## Опция  '-c'. Сортировка по странам.

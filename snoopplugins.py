@@ -318,8 +318,6 @@ def module2():
                 sys.exit()
             if rGeo == '1' or rGeo == '2':
                 print("\033[31;1mFunctionality missing in codebase\033[0m\n")
-                #print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
-                #snoopbanner.donate()
             break
             sys.exit()
         else:
@@ -436,8 +434,6 @@ def module1():
             elif dipbaza == "2" or dipbaza == "3":
                 while True:
                     print("\033[31;1mFunctionality missing in codebase\033[0m\n")
-                    #print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
-                    #snoopbanner.donate()
                     break
 
                 break
@@ -445,8 +441,6 @@ def module1():
 # Онлайн поиск.
             elif dipbaza == "1":
                 print("\033[31;1mFunctionality missing in codebase\033[0m\n")
-                #print("\033[31;1m└──В demo version этот метод плагина недоступен\033[0m\n")
-                #snoopbanner.donate()
                 break
 
 # Неверный выбор ключа при оффлайн/онлайн поиске. Выход.
