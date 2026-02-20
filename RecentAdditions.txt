@@ -1,0 +1,40 @@
+5380. 🌎 [Ownmates](https://ownmates.com)
+5381. 🌎 [Peepeth](https://peepeth.com)
+5382. 🌎 [Blurt](https://blurt.blog)
+5383. 🌎 [Only1](https://only1.app)
+5384. 🌎 [DiamondApp](https://diamondapp.com)
+5385. 🌎 [BudgetLightForum](https://budgetlightforum.com)
+5386. 🌎 [CandlePowerForums](https://candlepowerforums.com)
+5387. 🌎 [CycleBlaze](https://cycleblaze.com)
+5388. 🌎 [Write_as](https://write.as)
+5389. 🇬🇧 [PeerTube_UK](https://peertube.co.uk)
+5390. 🌎 [Venera_Social](https://venera.social)
+5391. 🌎 [Hubzilla](https://hubzilla.org)
+5392. 🌎 [Open_Audio](https://open.audio)
+5393. 🌎 [Bookwyrm_Social](https://bookwyrm.social)
+5394. 🌎 [Mobilizon](https://mobilizon.org)
+5395. 🇯🇵 [Misskey_IO](https://misskey.io)
+5396. 🇺🇸 [TruthSocial](https://truthsocial.com)
+5397. 🇺🇸 [Gettr](https://gettr.com)
+5398. 🇺🇸 [Tribel](https://tribel.com)
+5399. 🌎 [Counter_Social](https://counter.social)
+5400. 🌎 [WT_Social](https://wt.social)
+5401. 🌎 [Cohost](https://cohost.org)
+5402. 🇺🇸 [Post_News](https://post.news)
+5403. 🌎 [Spoutible](https://spoutible.com)
+5404. 🌎 [Hive_Blog](https://hive.blog)
+5405. 🌎 [Steemit](https://steemit.com)
+
+Batch 2:
+LemmyWorld: https://lemmy.world
+ShItJustWorks: https://sh.itjust.works
+PixelfedDE: https://pixelfed.de
+PaperWF: https://paper.wf
+ClapperApp: https://clapperapp.com
+NostrBand: https://nostr.band
+PrimalNet: https://primal.net
+SnortSocial: https://snort.social
+IrisTo: https://iris.to
+Audiomack: https://audiomack.com
+Triller: https://triller.co
+MeWe: https://mewe.com

@@ -40,8 +40,9 @@ def DB(db_base):
             trinity = json.loads(db.decode("UTF-8"))
             return trinity
     except Exception:
-        print(Style.BRIGHT + Fore.RED + "Упс, что-то пошло не так..." + Style.RESET_ALL)
-        sys.exit()
+        #print(Style.BRIGHT + Fore.RED + "Упс, что-то пошло не так..." + Style.RESET_ALL)
+        #sys.exit()
+        raise
 
 
 ## Пожертвование.
