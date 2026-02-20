@@ -24,3 +24,17 @@
 5403. 🌎 [Spoutible](https://spoutible.com)
 5404. 🌎 [Hive_Blog](https://hive.blog)
 5405. 🌎 [Steemit](https://steemit.com)
+
+Batch 2:
+LemmyWorld: https://lemmy.world
+ShItJustWorks: https://sh.itjust.works
+PixelfedDE: https://pixelfed.de
+PaperWF: https://paper.wf
+ClapperApp: https://clapperapp.com
+NostrBand: https://nostr.band
+PrimalNet: https://primal.net
+SnortSocial: https://snort.social
+IrisTo: https://iris.to
+Audiomack: https://audiomack.com
+Triller: https://triller.co
+MeWe: https://mewe.com
