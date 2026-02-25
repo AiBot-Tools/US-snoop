@@ -16,7 +16,7 @@ c'est-à-dire qu'il est disponible pour l'utilisateur moyen *(date de création 
  • [🇪🇸 ESPAÑOL readme](https://github.com/snooppr/snoop/blob/master/README.es.md "Por favor, siéntase libre de mejorar la traducción de esta página.")  
  • [🇩🇪 DEUTSCHE readme](https://github.com/snooppr/snoop/blob/master/README.de.md "Bitte zögern Sie nicht, die Übersetzung dieser Seite zu verbessern..")  
  • [🇨🇳 中国人 readme](https://github.com/snooppr/snoop/blob/master/README.cn.md "请随时改进此页面的翻译。")  
-• [🇷🇺 РУССКИЙ readme](https://github.com/snooppr/snoop)    
+• [🇷🇺 RUSSIAN readme](https://github.com/snooppr/snoop)    
 
  ---
 
@@ -232,7 +232,7 @@ search arguments:
 $ python3 snoop.py username1 #Exécution à partir de la source
 $ snoop_cli.bin username1 #Exécution à partir de la version Linux
 # Ou, par exemple, le cyrillique est pris en charge:
-$ python3 snoop.py олеся #Exécution à partir de la source
+$ python3 snoop.py olesya #Exécution à partir de la source
 # Pour rechercher un nom contenant un espace:
 $ snoop_cli.bin "bob dylan" #Exécution à partir de la version Linux
 $ snoop_cli.bin dob_dylan #Exécution à partir de la version Linux

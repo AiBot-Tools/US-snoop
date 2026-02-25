@@ -1,76 +1,76 @@
-УСЛОВИЯ ЛИЦЕНЗИОННОГО СОГЛАШЕНИЯ НА ИСПОЛЬЗОВАНИЕ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ 
+SOFTWARE LICENSE AGREEMENT TERMS
 SNOOP PROJECT
 
 Copyright (c) 2020 Snoop Project <snoopproject@protonmail.com>
-Все права защищены.
+All rights reserved.
 
 
-Данная лицензия разрешает, лицам, получившим копию
-данного программного обеспечения
-(в дальнейшем именуемыми "Программное Обеспечение"),
-использовать Программное Обеспечение, включая ограниченное право на
-использование, копирование и модификацию: только для личного пользования.
-Изменение, объединение, публикация, распространение,
-сублицензирование и/или продажа копий или частей Программного Обеспечения
-(не для личного использования или с использованием служебного положения)
-без письменного согласия автора запрещено.
+This license grants persons who have received a copy of
+this software
+(hereinafter referred to as "Software"),
+the right to use the Software, including limited right to
+use, copy and modify: for personal use only.
+Modification, adaptation, publication, distribution,
+sublicensing, and/or selling copies or portions of the Software
+(not for personal use or through official position)
+without the written consent of the author is prohibited.
 
-Материалы Программного Обеспечения, например, аудио, BDdemo, BDFull,
-BDflag файлы так же защищены авторским правом и являются результатом
-интеллектуальной деятельности разработчика и правообладателя Snoop Project,
-использование в коммерческих целях или публикация таких материалов
-без письменного согласия автора запрещено.
+Software materials, such as audio, BDdemo, BDFull,
+BDflag files are also copyrighted and are the result of
+the intellectual activity of the developer and copyright holder Snoop Project,
+use for commercial purposes or publication of such materials
+without the written consent of the author is prohibited.
 
-Snoop Project Demo Version — это версия имеет ограниченный набор функций и
-урезанную базу данных поиска по сравнению с Full Version ~в 15 раз.
-ДЕТАЛИ (Оферту) ПО 'SNOOP FULL VERSION' СМОТРИТЕ (Команда):
+Snoop Project Demo Version — this version has a limited set of features and
+a reduced search database compared to Full Version ~15 times.
+SEE DETAILS (Offer) FOR 'SNOOP FULL VERSION' (Command):
 python3 snoop.py --donate
 
-Исполняемый файл Программного Обеспечения (не исходная форма) может
-лицензироваться по аналогичной или измененной форме предоставляемой лицензии.
-Настоящая лицензия может быть изменена в любое время без какого-либо уведомления
-пользователей Программного Обеспечения. Пожалуйста, регулярно перечитывайте
-данные условия, чтобы быть в курсе всех изменений.
-Если вы продолжаете пользоваться Программным Обеспечением после публикации
-изменений, вы автоматически берете на себя юридическое обязательство выполнять
-данные условия со всеми внесенными в них поправками и/или изменениями.
+The executable code of the Software (not source form) may
+be licensed under a similar or modified form of the provided license.
+This license may be changed at any time without any notice to
+Software users. Please regularly reread
+these terms to be aware of all changes.
+If you continue to use the Software after the publication of
+changes, you automatically assume the legal obligation to comply with
+these terms with all amendments and/or changes made to them.
 
-Форс-мажорные обстоятельства. Возможна задержка в доставке пользователю ПО
-и/или обновлении базы данных, например, при отключении Интернета в локации
-разработчика, или, например, при недоставке банком разработчику комментария
-пользователя к платежу, или, например, при каких-либо иных событиях
-непреодолимой силы.
+Force Majeure. There may be a delay in delivering the Software to the user
+and/or updating the database, for example, if the Internet is disconnected in the developer's
+location, or, for example, if the bank does not deliver the user's payment comment
+to the developer, or, for example, in case of any other events
+of force majeure.
 
-В случае если какие-либо из этих условий будут признаны незаконными,
-недействительными или другим образом невыполнимыми в соответствии с законами
-любого государства или страны, в которых эти условия действуют, в рамках,
-предусмотренных законодательством, незаконные, недействительные или невыполнимые
-условия будут недейственны, а остальные условия лицензии будут оставаться
-в полной юридической силе и действии.
+In the event that any of these conditions are found to be illegal,
+invalid, or otherwise unenforceable under the laws of
+any state or country in which these conditions operate, within the scope
+provided by law, illegal, invalid or unenforceable
+conditions will be ineffective, and the remaining conditions of the license will remain
+in full legal force and effect.
 
-Весь текст лицензии относится и должен быть включён во все
-копии или значимые части данного Программного Обеспечения.
+The entire text of the license applies to and must be included in all
+copies or substantial portions of this Software.
 
-ДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ»,
-БЕЗ ЛЮБОГО ВИДА ГАРАНТИЙ, ЯВНО ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ,
-ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ ГАРАНТИЯМИ ТОВАРНОЙ ПРИГОДНОСТИ,
-СООТВЕТСТВИЯ ПО ЕГО КОНКРЕТНОМУ НАЗНАЧЕНИЮ И НЕНАРУШЕНИЯ ПРАВ.
-НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ
-ПО ИСКАМ О ВОЗМЕЩЕНИИ УЩЕРБА, УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ ПО
-ДЕЙСТВУЮЩИМ КОНТРАКТАМ, ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ
-ПРИЧИНОЙ ИЛИ СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ ИСПОЛЬЗОВАНИЕМ
-ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ.
+THIS SOFTWARE IS PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
 
-ИСПОЛЬЗУЯ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ, ВЫ СОГЛАШАЕТЕСЬ С УСЛОВИЯМИ НАСТОЯЩЕЙ
-ЛИЦЕНЗИИ, КОТОРАЯ ОБЯЗАНА ДЛЯ ВАС. ЕСЛИ ВЫ НЕ СОГЛАШАЕТЕСЬ С УСЛОВИЯМИ
-НАСТОЯЩЕЙ ЛИЦЕНЗИИ, РАЗРАБОТЧИК НЕ БУДЕТ ЛИЦЕНЗИРОВАТЬ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ
-ДЛЯ ВАС, И ВЫ НЕ ДОЛЖНЫ ИСПОЛЬЗОВАТЬ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ.
+BY USING THE SOFTWARE, YOU AGREE TO THE TERMS OF THIS
+LICENSE, WHICH IS BINDING UPON YOU. IF YOU DO NOT AGREE TO THE TERMS
+OF THIS LICENSE, THE DEVELOPER WILL NOT LICENSE THE SOFTWARE
+TO YOU, AND YOU MUST NOT USE THE SOFTWARE.
 
-Программное Обеспечение включает в себя части работ, на которые
-распространяются следующие авторские права и уведомления о разрешении.
+The Software includes portions of work that are
+covered by the following copyrights and permission notices.
 ================================================================================
 
-© участники проекта OpenStreetMap, CC-BY-SA
+© OpenStreetMap contributors, CC-BY-SA
 https://www.openstreetmap.org/copyright
 http://www.openstreetmap.org/
 ================================================================================

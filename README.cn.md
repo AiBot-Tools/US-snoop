@@ -15,7 +15,7 @@ Snoop 项目是在没有考虑 NSA 和他们的朋友的意见的情况下开发
  • [🌎 ENGLISH readme](https://github.com/snooppr/snoop/blob/master/README.en.md "Please feel free to improve the translation of this page.")  
  • [🇪🇸 ESPAÑOL readme](https://github.com/snooppr/snoop/blob/master/README.es.md "Por favor, siéntase libre de mejorar la traducción de esta página.")  
  • [🇩🇪 DEUTSCHE readme](https://github.com/snooppr/snoop/blob/master/README.de.md "Bitte zögern Sie nicht, die Übersetzung dieser Seite zu verbessern..")  
- • [🇷🇺 РУССКИЙ readme](https://github.com/snooppr/snoop)   
+ • [🇷🇺 RUSSIAN readme](https://github.com/snooppr/snoop)   
  • [🇫🇷 FRANÇAIS readme](https://github.com/snooppr/snoop/blob/master/README.fr.md "N'hésitez pas à améliorer la traduction de cette page.")  
 
  ---
@@ -201,7 +201,7 @@ search arguments:
 $ python3 snoop.py username1 #从源代码运行
 $ snoop_cli.bin username1 #从发行版 linux 运行
 # 或者，例如，支持西里尔字母：
-$ python3 snoop.py олеся #从源代码运行
+$ python3 snoop.py olesya #从源代码运行
 # 要搜索包含空格的名称：
 $ snoop_cli.bin "bob dylan" #从发行版 linux 运行
 $ snoop_cli.bin dob_dylan #从发行版 linux 运行

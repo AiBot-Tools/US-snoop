@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 # Copyright (c) 2020 Snoop Project <snoopproject@protonmail.com> 
-"Самотестирование сети"
+"Network self-test"
 
 import speedtest
 from rich.console import Console
@@ -10,7 +10,7 @@ from rich.style import Style as STL
 
 def nettest():
     console2 = Console()
-    with console2.status("[cyan] Ожидайте, идёт самотестирование сети...", spinner='noise'):
+    with console2.status("[cyan] Please wait, running network self-test...", spinner='noise'):
         servers = []
         try:
             s = speedtest.Speedtest(secure=True)
@@ -26,32 +26,32 @@ def nettest():
             p = round(a.get("ping"))
             c = a.get("client")
 
-# Скорость загрузки.
+# Download speed.
             try:
-                if d < 3: d = f"Download: [bold red]{d}[/bold red] Мбит/с"
-                elif 3 <= d <= 5.5: d = f"Download: [yellow]{d}[/yellow] Мбит/с"
-                elif d > 5.5: d = f"Download: [bold green]{d}[/bold green] Мбит/с"
+                if d < 3: d = f"Download: [bold red]{d}[/bold red] Mbps"
+                elif 3 <= d <= 5.5: d = f"Download: [yellow]{d}[/yellow] Mbps"
+                elif d > 5.5: d = f"Download: [bold green]{d}[/bold green] Mbps"
             except:
-                d = f"Download: [bold red]Сбой[/bold red]"
+                d = f"Download: [bold red]Failure[/bold red]"
 
-# Скорость выгрузки.
+# Upload speed.
             try:
-                if u < 0.8: u = f"Upload: [bold red]{u}[/bold red] Мбит/с"
-                elif 0.8 <= u <= 1.5: u = f"Upload: [yellow]{u}[/yellow] Мбит/с"
-                elif u > 1.5: u = f"Upload: [bold green]{u}[/bold green] Мбит/с"
+                if u < 0.8: u = f"Upload: [bold red]{u}[/bold red] Mbps"
+                elif 0.8 <= u <= 1.5: u = f"Upload: [yellow]{u}[/yellow] Mbps"
+                elif u > 1.5: u = f"Upload: [bold green]{u}[/bold green] Mbps"
             except:
-                u = f"Upload: [bold red]Сбой[/bold red]"
+                u = f"Upload: [bold red]Failure[/bold red]"
 # Ping.
             try:
-                if p >= 250: p = f"Ping: [bold red]{p}[/bold red] мс"
-                elif 60 <= p < 250: p = f"Ping: [yellow]{p}[/yellow] мс"
-                elif p < 60: p = f"Ping: [bold green]{p}[/bold green] мс"
+                if p >= 250: p = f"Ping: [bold red]{p}[/bold red] ms"
+                elif 60 <= p < 250: p = f"Ping: [yellow]{p}[/yellow] ms"
+                elif p < 60: p = f"Ping: [bold green]{p}[/bold green] ms"
             except:
-                p = f"Ping: [bold red]Сбой[/bold red]"
-# Результат.
-            console2.print(Panel.fit(f"{d}\n{u}\n{p}\n\nВаш ip: {c.get('ip')}\nПровайдер: " + \
-                                     f"{c.get('isp')}\nЛокация: {c.get('country')}",
-                                     title="[cyan]🌐 Тест сети[/cyan]", style=STL(color="cyan")))
-            console2.log("[cyan]--> завершен")
+                p = f"Ping: [bold red]Failure[/bold red]"
+# Result.
+            console2.print(Panel.fit(f"{d}\n{u}\n{p}\n\nYour IP: {c.get('ip')}\nProvider: " + \
+                                     f"{c.get('isp')}\nLocation: {c.get('country')}",
+                                     title="[cyan]🌐 Network Test[/cyan]", style=STL(color="cyan")))
+            console2.log("[cyan]--> completed")
         except Exception:
-            console2.print(f"[bold red]Аномалии в сети (internet_censorship?).\nТест будет пропущен...")
+            console2.print(f"[bold red]Network anomalies (internet_censorship?).\nTest will be skipped...")

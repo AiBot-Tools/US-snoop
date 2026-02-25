@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 # Copyright (c) 2020 Snoop Project <snoopproject@protonmail.com>
-"""Плагины Snoop Project/Черновик"""
+"""Snoop Project Plugins/Draft"""
 
 import ipaddress
 import json
@@ -39,12 +39,12 @@ def ravno():
 
 
 def helpend():
-    console.rule("[bold red]Конец справки")
+    console.rule("[bold red]End of help")
 
 
-wZ1bad = []  #отфильтрованные ip (не ip) или отфильтрованные данные Yandex, отфильтрованные 'геокоординаты'
-azS = []  #список результатов future request
-coord = []  #координаты многоцелевой список
+wZ1bad = []  #filtered IPs (not IPs) or filtered Yandex data, filtered 'geocoordinates'
+azS = []  #list of future request results
+coord = []  #coordinates multipurpose list
 
 
 def my_session():
@@ -57,26 +57,26 @@ def my_session():
 
 ## ERR.
 def Erf(hvostfile):
-    print(f"\033[31;1mНе могу найти_прочитать файл: '{hvostfile}'.\033[0m \033[36m\n " + \
-          f"\nПожалуйста, укажите текстовый файл в кодировке —\033[0m \033[36;1mutf-8.\033[0m\n" + \
-          f"\033[36mПо умолчанию, например, блокнот в OS Windows сохраняет текст в кодировке — ANSI.\033[0m\n" + \
-          f"\033[36mОткройте ваш файл '{hvostfile}' и измените кодировку [файл ---> сохранить как ---> utf-8].\n" + \
-          f"\033[36mИли удалите из файла нечитаемые спецсимволы.")
+    print(f"\033[31;1mCannot find/read file: '{hvostfile}'.\033[0m \033[36m\n " + \
+          f"\nPlease specify a text file in encoding —\033[0m \033[36;1mutf-8.\033[0m\n" + \
+          f"\033[36mBy default, for example, Notepad in Windows saves text in ANSI encoding.\033[0m\n" + \
+          f"\033[36mOpen your file '{hvostfile}' and change the encoding [File --> Save As --> utf-8].\n" + \
+          f"\033[36mOr remove unreadable special characters from the file.")
     ravno()
 
 
-## Карты, мета инфо.
-"Черновик."
+## Maps, meta info.
+"Draft."
 
 
-## Модуль Yandex_parser.
+## Yandex_parser module.
 # api https://yandex.ru/dev/id/doc/dg/reference/response.html#response__norights_5
 def module3():
     while True:
         listlogin = []
         dicYa = {}
 
-# Парсинг.
+# Parsing.
         def parsingYa():
             for login in listlogin:
                 urlYa = f'https://yandex.ru/collections/api/users/{login}/'
@@ -85,7 +85,7 @@ def module3():
                     r = my_session().get(urlYa, headers=head0, timeout=3)
                     azS.append(r)
                 except Exception:
-                    print(f"\n{Fore.RED}Ошибка сети пропуск —> '{Style.RESET_ALL}{Style.BRIGHT}" + \
+                    print(f"\n{Fore.RED}Network error, skipping —> '{Style.RESET_ALL}{Style.BRIGHT}" + \
                           f"{Fore.RED}{login}{Style.RESET_ALL}{Fore.RED}'{Style.RESET_ALL}")
                     if Ya != '4':
                         ravno()
@@ -104,11 +104,11 @@ def module3():
                     #print(rY.text)
                     try:
                         rdict = json.loads(rY.text)
-                        if rdict.get('title') == "404 Not Found":  #равно
+                        if rdict.get('title') == "404 Not Found":  #equal
                             raise Exception("")
                     except Exception:
                         rdict = {}
-                        rdict.update(public_id="Увы", display_name="-No-")
+                        rdict.update(public_id="Alas", display_name="-No-")
 
                     login_tab = login.split(sep='@', maxsplit=1)[0]
                     pub = rdict.get("public_id")
@@ -118,18 +118,18 @@ def module3():
 
                     if rdict.get("display_name") == "-No-":
                         if Ya != '4':
-                            print(Style.BRIGHT + Fore.RED + "\nНе сработало")
+                            print(Style.BRIGHT + Fore.RED + "\nDid not work")
                             console.rule(characters="=", style="cyan bold\n")
                         else:
                             continue
                         continue
                     else:
                         table1 = Table(title=f"\n{Style.DIM}{Fore.CYAN}demo_func{Style.RESET_ALL}", style="green")
-                        table1.add_column("Имя", style="magenta", overflow="fold")
-                        table1.add_column("Логин", style="cyan", overflow="fold")
+                        table1.add_column("Name", style="magenta", overflow="fold")
+                        table1.add_column("Login", style="cyan", overflow="fold")
                         table1.add_column("E-mail", style="cyan", overflow="fold")
                         if Ya == '3':
-                            table1.add_row(name, "Пропуск", "Пропуск")
+                            table1.add_row(name, "Skip", "Skip")
                         else:
                             table1.add_row(name, login_tab, email)
                         console.print(table1)
@@ -138,7 +138,7 @@ def module3():
                         market = f"https://market.yandex.ru/user/{pub}/reviews"
 
                         if Ya == '3':
-                            music = f"\033[33;1mПропуск\033[0m"
+                            music = f"\033[33;1mSkip\033[0m"
                         else:
                             music = f"https://music.yandex.ru/users/{login}/tracks"
                         dzen = f"https://zen.yandex.ru/user/{pub}"
@@ -146,12 +146,12 @@ def module3():
                         avatar_html = f"https://avatars.mds.yandex.net/get-yapic/{avatar}/islands-retina-50"
                         avatar_cli = f"https://avatars.mds.yandex.net/get-yapic/{avatar}/islands-300"
 
-                        print("\033[32;1mЯ.Отзывы:\033[0m", otzyv)
-                        print("\033[32;1mЯ.Маркет:\033[0m", market)
-                        print("\033[32;1mЯ.Музыка:\033[0m", music)
-                        print("\033[32;1mЯ.Дзен:\033[0m", dzen)
-                        print("\033[32;1mЯ.Кью:\033[0m", qu)
-                        print("\033[32;1mЯ.Avatar:\033[0m", avatar_cli)
+                        print("\033[32;1mYa.Reviews:\033[0m", otzyv)
+                        print("\033[32;1mYa.Market:\033[0m", market)
+                        print("\033[32;1mYa.Music:\033[0m", music)
+                        print("\033[32;1mYa.Dzen:\033[0m", dzen)
+                        print("\033[32;1mYa.Q:\033[0m", qu)
+                        print("\033[32;1mYa.Avatar:\033[0m", avatar_cli)
 
                         yalist = [avatar_html, otzyv, market, music, dzen, qu]
 
@@ -166,18 +166,18 @@ def module3():
             ravno()
             azS.clear()
 
-        print("\n\033[36m[\033[0m\033[32;1m1\033[0m\033[36m] --> Указать логин пользователя\n" + \
-              "[\033[0m\033[32;1m2\033[0m\033[36m] --> Указать публичную ссылку на Яндекс.Диск\n" + \
-              "[\033[0m\033[32;1m3\033[0m\033[36m] --> Указать идентификатор пользователя\n" + \
-              "[\033[0m\033[32;1m4\033[0m\033[36m] --> Указать файл с именами пользователей\n" + \
-              "[\033[0m\033[32;1mhelp\033[0m\033[36m] --> Справка\n" + \
-              "[\033[0m\033[31;1mq\033[0m\033[36m] --> Выход\n")
+        print("\n\033[36m[\033[0m\033[32;1m1\033[0m\033[36m] --> Specify user login\n" + \
+              "[\033[0m\033[32;1m2\033[0m\033[36m] --> Specify public Yandex.Disk link\n" + \
+              "[\033[0m\033[32;1m3\033[0m\033[36m] --> Specify user identifier\n" + \
+              "[\033[0m\033[32;1m4\033[0m\033[36m] --> Specify file with usernames\n" + \
+              "[\033[0m\033[32;1mhelp\033[0m\033[36m] --> Help\n" + \
+              "[\033[0m\033[31;1mq\033[0m\033[36m] --> Exit\n")
 
-        Ya = console.input("[cyan]ввод --->  [/cyan]")
+        Ya = console.input("[cyan]input --->  [/cyan]")
 
-# Выход.
+# Exit.
         if Ya == "q":
-            print(Style.BRIGHT + Fore.RED + "Выход")
+            print(Style.BRIGHT + Fore.RED + "Exit")
             sys.exit()
 
 # Help.
@@ -185,51 +185,51 @@ def module3():
             snoopbanner.help_yandex_parser()
             helpend()
 
-# Указать login.
+# Specify login.
         elif Ya == '1':
-            print("\033[36m└──Введите login/email разыскиваемого пользователя, например,\033[0m\033[32;1m bobbimonov\033[0m\n")
+            print("\033[36m└──Enter login/email of the target user, for example,\033[0m\033[32;1m bobbimonov\033[0m\n")
             login = console.input("[cyan]login/email --->  [/cyan]")
             login = login.split(sep='@', maxsplit=1)[0]
             listlogin.append(login)
 
             parsingYa()
 
-# Указать ссылку на Я.Диск.
+# Specify Yandex.Disk link.
         elif Ya == '2':
-            print("\033[36m└──Введите публичную ссылку на Яндекс.Диск, например,\033[0m\033[32;1m https://yadi.sk/d/7C6Z9q_Ds1wXkw\033[0m\n")
+            print("\033[36m└──Enter public Yandex.Disk link, for example,\033[0m\033[32;1m https://yadi.sk/d/7C6Z9q_Ds1wXkw\033[0m\n")
             urlYD = console.input("[cyan]url --->  [/cyan]")
 
             try:
                 r2 = my_session().get(urlYD, headers=head0, timeout=3)
             except Exception:
-                print(Fore.RED + "\nОшибка" + Style.RESET_ALL)
+                print(Fore.RED + "\nError" + Style.RESET_ALL)
                 console.rule(characters='=', style="cyan bold\n")
                 continue
             try:
                 login = r2.text.split('displayName":"')[1].split('"')[0]
             except Exception:
                 login = "NoneStop"
-                print(Style.BRIGHT + Fore.RED + "\nНе сработало")
+                print(Style.BRIGHT + Fore.RED + "\nDid not work")
 
             if login != "NoneStop":
                 listlogin.append(login)
                 parsingYa()
 
-# Указать идентификатор Яндекс пользователя.
+# Specify Yandex user identifier.
         elif Ya == '3':
-            print("\033[36m└──Введите идентификатор пользователя Яндекс, например,\033[0m\033[32;1m tr6r2c8ea4tvdt3xmpy5atuwg0\033[0m\n")
+            print("\033[36m└──Enter the Yandex user identifier, for example,\033[0m\033[32;1m tr6r2c8ea4tvdt3xmpy5atuwg0\033[0m\n")
             login = console.input("[cyan]hash --->  [/cyan]")
             listlogin.append(login)
 
             if len(login) != 26:
-                print(Style.BRIGHT + Fore.RED + "└──Неверно указан идентификатор пользователя" + Style.RESET_ALL)
+                print(Style.BRIGHT + Fore.RED + "└──Incorrectly specified user identifier" + Style.RESET_ALL)
                 ravno()
             else:
                 parsingYa()
 
-# Указать файл с логинами.
+# Specify file with logins.
         elif Ya == '4':
-            print("\033[36m└──Введите путь к файлу с логинами\033[0m\n")
+            print("\033[36m└──Enter path to file with logins\033[0m\n")
             path_file = console.input("[cyan]File --->  [/cyan]")
             if sys.platform == 'win32':
                 path_file = path_file.replace('"', '').strip()
@@ -244,30 +244,30 @@ def module3():
                             listlogin.append(login)
                 parsingYa()
             except Exception as e:
-                print(f"\033[31;1mОшибка чтения файла: {e}\033[0m")
+                print(f"\033[31;1mFile read error: {e}\033[0m")
                 ravno()
         else:
-            print(Style.BRIGHT + Fore.RED + "└──Неверный выбор" + Style.RESET_ALL)
+            print(Style.BRIGHT + Fore.RED + "└──Invalid choice" + Style.RESET_ALL)
             ravno()
 
 
-## Модуль Reverse Vgeocoder.
+## Reverse Vgeocoder module.
 def module2():
     if hasattr(sys, 'getandroidapilevel'):
-        print(Style.BRIGHT + Fore.RED + "└──Плагин Reverse Vgeocoder 'сложен' и не поддерживается (по умолчанию) " + \
-              "в Snoop for Termux\n\nВыход\n" + Style.RESET_ALL)
+        print(Style.BRIGHT + Fore.RED + "└──Plugin Reverse Vgeocoder is 'complex' and not supported (by default) " + \
+              "in Snoop for Termux\n\nExit\n" + Style.RESET_ALL)
         sys.exit()
     while True:
         print("""
-\033[36m[\033[0m\033[32;1m1\033[0m\033[36m] --> Выбрать файл\n\
-[\033[0m\033[32;1mhelp\033[0m\033[36m] --> Справка\n\
-[\033[0m\033[31;1mq\033[0m\033[36m] --> Выход\n""")
+\033[36m[\033[0m\033[32;1m1\033[0m\033[36m] --> Select file\n\
+[\033[0m\033[32;1mhelp\033[0m\033[36m] --> Help\n\
+[\033[0m\033[31;1mq\033[0m\033[36m] --> Exit\n""")
 
-        Vgeo = console.input("[cyan]ввод --->  [/cyan]")
+        Vgeo = console.input("[cyan]input --->  [/cyan]")
 
-# Выход.
+# Exit.
         if Vgeo == "q":
-            print(Style.BRIGHT + Fore.RED + "Выход")
+            print(Style.BRIGHT + Fore.RED + "Exit")
             sys.exit()
 
 # Help.
@@ -275,45 +275,45 @@ def module2():
             snoopbanner.help_vgeocoder_vgeo()
             helpend()
 
-# выбрать файл с геокоординатами.
+# Select file with geocoordinates.
         elif Vgeo == '1':
             float_patern = '[-]? (?: (?: \\d* \\. \\d+ ))'
             rx = re.compile(float_patern, re.VERBOSE)
             while True:
-                print("\033[36m└──Введите \033[0m\033[32;1mабсолютный путь\033[0m \033[36mк файлу (кодировка файла -> utf-8) с данными: \n\
-        [геокоординаты] или перетащите файл в окно терминала\033[0m\n")
+                print("\033[36m└──Enter \033[0m\033[32;1mabsolute path\033[0m \033[36mto a file (file encoding -> utf-8) with data: \n\
+        [geocoordinates] or drag the file into the terminal window\033[0m\n")
                 put = console.input("[cyan]File --->  [/cyan]")
                 if sys.platform == 'win32':
                     put = put.replace('"', '').strip()
                 else:
                     put = put.replace("'", "").strip()
 
-# Проверка пути файла с координатами.
+# Check file path with coordinates.
                 try:
                     if os.path.exists(put) is False:
                         raise Exception("")
                     break
                 except Exception:
-                    print("\033[31;1m└──Указан неверный путь. " + \
-                          "Укажите корректный абсолютный путь к объекту или перетащите файл в окно терминала\033[0m")
+                    print("\033[31;1m└──Invalid path specified. " + \
+                          "Specify a correct absolute path to the file or drag the file into the terminal window\033[0m")
                     hvostput = os.path.split(put)[1].replace('"', '')
                     Erf(hvostput)
 
             while True:
-                print("\n\033[36m╭Выберите режим геокодирования:\033[0m\n" + \
-                      "\033[36m├──\033[36m[\033[0m\033[32;1m1\033[0m\033[36m] --> Простой (full version)\033[0m\n" + \
-                      "\033[36m├──\033[36m[\033[0m\033[32;1m2\033[0m\033[36m] --> Подробный (full version)\033[0m\n" + \
-                      "\033[36m└──\033[36m[\033[0m\033[31;1mq\033[0m\033[36m] --> Выход\033[0m\n")
-                rGeo = console.input("[cyan]ввод --->  [/cyan]")
+                print("\n\033[36m╭Select geocoding mode:\033[0m\n" + \
+                      "\033[36m├──\033[36m[\033[0m\033[32;1m1\033[0m\033[36m] --> Simple (full version)\033[0m\n" + \
+                      "\033[36m├──\033[36m[\033[0m\033[32;1m2\033[0m\033[36m] --> Detailed (full version)\033[0m\n" + \
+                      "\033[36m└──\033[36m[\033[0m\033[31;1mq\033[0m\033[36m] --> Exit\033[0m\n")
+                rGeo = console.input("[cyan]input --->  [/cyan]")
 
                 if rGeo == "q" or rGeo == '1' or rGeo == '2':
                     break
                 else:
-                    print(Style.BRIGHT + Fore.RED + "└──Неверный выбор" + Style.RESET_ALL)
+                    print(Style.BRIGHT + Fore.RED + "└──Invalid choice" + Style.RESET_ALL)
                     ravno()
 
             if rGeo == "q":
-                print(Style.BRIGHT + Fore.RED + "Выход")
+                print(Style.BRIGHT + Fore.RED + "Exit")
                 break
                 sys.exit()
             if rGeo == '1' or rGeo == '2':
@@ -321,24 +321,24 @@ def module2():
             break
             sys.exit()
         else:
-            print(Style.BRIGHT + Fore.RED + "└──Неверный выбор" + Style.RESET_ALL)
+            print(Style.BRIGHT + Fore.RED + "└──Invalid choice" + Style.RESET_ALL)
             ravno()
 
 
-## Модуль GEO_IP/domain.
+## GEO_IP/domain module.
 def module1():
     t_socket = 4
     domain = None
     res4, res6 = None, None
 
-# Домен.
+# Domain.
     def task_fbn(dip):
         nonlocal domain
         #time.sleep(11)
         domain = socket.getfqdn(dip)
         return domain
 
-# Домен > IPv4/v6.
+# Domain > IPv4/v6.
     def res46(dipp):
         nonlocal res4, res6
         #time.sleep(11)
@@ -357,12 +357,12 @@ def module1():
 
         return res4, res6
 
-# Потоки.
+# Threads.
     def treads_dr(fun, args, dr):
-        """Потоки необходимы для того, чтобы оборачивать встроенные socket-функции, не имеющие таймаута.
+        """Threads are needed to wrap built-in socket functions that have no timeout.
 
-        В случае замедления (на Android ожидание может доходить до > 1 минуты, обычно возвращается пустой результат,
-        когда ip/domain ложный) уничтожить потоки через заданное время 't_socket'.
+        In case of slowdown (on Android the wait can exceed > 1 minute, usually returns an empty result,
+        when ip/domain is invalid) destroy threads after a given time 't_socket'.
         """
 
         d1 = threading.Thread(target=fun, args=(args,))
@@ -370,67 +370,67 @@ def module1():
         d1.join(t_socket)
 
         if domain is None or (dr=='res' and res4 is None and res6 is None):
-            console.log("[bold red]--> таймаут | ресурс не существует.[/bold red]")
+            console.log("[bold red]--> timeout | resource does not exist.[/bold red]")
             os.kill(os.getpid(), signal.SIGBREAK) if sys.platform == 'win32' else os.kill(os.getpid(), signal.SIGKILL)
 
-# Запрос future request.
+# Future request query.
     def reqZ():
         try:
             r = req.result()
             return r.text
         except requests.exceptions.ConnectionError:
-            print(Fore.RED + "\nОшибка соединения\n" + Style.RESET_ALL)
+            print(Fore.RED + "\nConnection error\n" + Style.RESET_ALL)
         except requests.exceptions.Timeout:
-            print(Fore.RED + "\nОшибка таймаут\n" + Style.RESET_ALL)
+            print(Fore.RED + "\nTimeout error\n" + Style.RESET_ALL)
         except requests.exceptions.RequestException:
-            print(Fore.RED + "\nОшибка не идентифицирована\n" + Style.RESET_ALL)
+            print(Fore.RED + "\nUnidentified error\n" + Style.RESET_ALL)
         except requests.exceptions.HTTPError:
-            print(Fore.RED + "\nОшибка HTTPS\n" + Style.RESET_ALL)
+            print(Fore.RED + "\nHTTPS error\n" + Style.RESET_ALL)
         return "Err"
 
-# Выбор поиска одиночный или '-f'.
+# Search type selection: single or '-f'.
     ravno()
-    print("\n\033[36mВведите домен (пример:\033[0m \033[32;1mexample.com\033[0m\033[36m),\n" + \
-          "или IPv4/IPv6 (пример:\033[0m" + \
+    print("\n\033[36mEnter a domain (example:\033[0m \033[32;1mexample.com\033[0m\033[36m),\n" + \
+          "or IPv4/IPv6 (example:\033[0m" + \
           "\033[32;1m 8.8.8.8\033[0m\033[36m),\n" + \
-          "или url (пример: \033[32;1mhttps://example.com/1/2/3/foo\033[0m\033[36m), \n" + \
-          "или укажите файл с данными.\n" + \
-          "[\033[0m\033[32;1mfile\033[0m\033[36m] --> обработка файла данных\n" + \
-          "[\033[0m\033[32;1menter\033[0m\033[36m] --> информация о своем GEO_IP\n" + \
-          "[\033[0m\033[31;1mq\033[0m\033[36m] --> Выход")
+          "or url (example: \033[32;1mhttps://example.com/1/2/3/foo\033[0m\033[36m), \n" + \
+          "or specify a file with data.\n" + \
+          "[\033[0m\033[32;1mfile\033[0m\033[36m] --> process data file\n" + \
+          "[\033[0m\033[32;1menter\033[0m\033[36m] --> info about your GEO_IP\n" + \
+          "[\033[0m\033[31;1mq\033[0m\033[36m] --> Exit")
 
 
-    dip = console.input("\n[cyan]ввод --->  [/cyan]")
+    dip = console.input("\n[cyan]input --->  [/cyan]")
 
-# выход.
+# Exit.
     if dip == "q":
-        print(Style.BRIGHT + Fore.RED + "Выход")
+        print(Style.BRIGHT + Fore.RED + "Exit")
         sys.exit()
 
-# проверка данных.
+# Data check.
     elif dip == 'file':
         while True:
-            print("""\033[36m├──Выберите тип поиска
+            print("""\033[36m├──Select search type
 │
-[\033[0m\033[32;1m1\033[0m\033[36m] --> \033[30;1mOnline (медленно)\033[0m\033[36m
-[\033[0m\033[32;1m2\033[0m\033[36m] --> Offline (быстро)
-[\033[0m\033[32;1m3\033[0m\033[36m] --> Offline_тихий (очень быстро)
-[\033[0m\033[32;1mhelp\033[0m\033[36m] --> Справка\n\
-[\033[31;1mq\033[0m\033[36m] --> Выход\033[0m\n""")
+[\033[0m\033[32;1m1\033[0m\033[36m] --> \033[30;1mOnline (slow)\033[0m\033[36m
+[\033[0m\033[32;1m2\033[0m\033[36m] --> Offline (fast)
+[\033[0m\033[32;1m3\033[0m\033[36m] --> Offline_quiet (very fast)
+[\033[0m\033[32;1mhelp\033[0m\033[36m] --> Help\n\
+[\033[31;1mq\033[0m\033[36m] --> Exit\033[0m\n""")
 
-            dipbaza = console.input("[cyan]ввод --->  [/cyan]")
+            dipbaza = console.input("[cyan]input --->  [/cyan]")
 
-# Выход.
+# Exit.
             if dipbaza == "q":
-                print("\033[31;1mВыход\033[0m")
+                print("\033[31;1mExit\033[0m")
                 sys.exit(0)
-# Справка.
+# Help.
             elif dipbaza == "help":
                 snoopbanner.geo_ip_domain()
                 helpend()
 
-# Оффлайн поиск.
-# Открываем GeoCity.
+# Offline search.
+# Open GeoCity.
             elif dipbaza == "2" or dipbaza == "3":
                 while True:
                     print("\033[31;1mFunctionality missing in codebase\033[0m\n")
@@ -438,17 +438,17 @@ def module1():
 
                 break
 
-# Онлайн поиск.
+# Online search.
             elif dipbaza == "1":
                 print("\033[31;1mFunctionality missing in codebase\033[0m\n")
                 break
 
-# Неверный выбор ключа при оффлайн/онлайн поиске. Выход.
+# Invalid key choice for offline/online search. Exit.
             else:
-                print(Style.BRIGHT + Fore.RED + "└──Неверный выбор" + Style.RESET_ALL)
+                print(Style.BRIGHT + Fore.RED + "└──Invalid choice" + Style.RESET_ALL)
                 ravno()
 
-# одиночный запрос.
+# Single query.
     else:
         def ip_check(url_api, dip, res4, err):
             if dip == "": url_api = url_api
@@ -472,7 +472,7 @@ def module1():
                         if dip == '': p = ''
                         elif res4 != '-': p = res4 + '/'
                         else: dip + '/'
-                        console.log("[bold yellow]--> Внимание! Последний доступный url_ip[/bold yellow]")
+                        console.log("[bold yellow]--> Warning! Last available url_ip[/bold yellow]")
                         T1 = my_session().get(url=f"https://ipinfo.io/{p}country", timeout=3).text
                         T2 = my_session().get(url=f"https://ipinfo.io/{p}region", timeout=3).text
                         T5 = my_session().get(url=f"https://ipinfo.io/{p}ip", timeout=3).text
@@ -489,16 +489,16 @@ def module1():
                     T4 = "stop"
                     T5 = "-"
                     print("""\033[31;1m\n
-|\ | _ ._  _
-| \|(_)| |(/_\033[0m""")
+|\\ | _ ._  _
+| \\|(_)| |(/_\033[0m""")
 
             return T1, T2, T3, T4, T5
 
 
-        table_name = "Мой ip" if dip == "" else dip
+        table_name = "My IP" if dip == "" else dip
 
         if '.' not in dip and ':' not in dip and dip != "" or (dip != "" and len(dip) <= 4) or '..' in dip:
-            print(Style.BRIGHT + Fore.RED + "└──Неверный ввод\n" + Style.RESET_ALL)
+            print(Style.BRIGHT + Fore.RED + "└──Invalid input\n" + Style.RESET_ALL)
             return module1()
         else:
             u = urlparse(dip).hostname
@@ -508,7 +508,7 @@ def module1():
                 dip = u.replace("www.", "").strip()
 
 
-        with console.status("[cyan]работаю[/cyan]", spinner="earth"):
+        with console.status("[cyan]working[/cyan]", spinner="earth"):
             treads_dr(task_fbn, dip, dr="dom")
 
             try:
@@ -529,14 +529,14 @@ def module1():
             except Exception: pass
 
             table = Table(title=table_name, title_style="italic bold red", style="green", header_style='green')
-            table.add_column("Код", style="magenta")
+            table.add_column("Code", style="magenta")
             if dip == "":
                 table.add_column("IP", style="cyan", overflow="fold")
             else:
                 table.add_column("IPv4", style="cyan", overflow="fold")
                 table.add_column("IPv6", style="cyan", overflow="fold")
-            table.add_column("Домен", style="green", overflow="fold")
-            table.add_column("Регион", style="green", overflow="fold")
+            table.add_column("Domain", style="green", overflow="fold")
+            table.add_column("Region", style="green", overflow="fold")
             if dip == "":
                 table.add_row(T1, T5, domain, T2)
             else:

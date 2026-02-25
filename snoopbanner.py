@@ -19,16 +19,15 @@ init(autoreset=True)
 console = Console()
 
 
-## Логирование ошибок.
+## Error logging.
 def err_all(err_="low"):
     if err_ == "high":
-        return "⚠️ [bold red][RU] Внимание! Критическая ошибка, просьба сообщить об этом разработчику.\n" + \
-                   "[EN] Attention! Critical error, please report it to the developer.\nhttps://github.com/snooppr/snoop/issues[/bold red]"
+        return "⚠️ [bold red]Attention! Critical error, please report it to the developer.\nhttps://github.com/snooppr/snoop/issues[/bold red]"
     elif err_ == "low":
-        return "⚠️ [bold yellow][RU] Ошибка | [EN] Error[/bold yellow]"
+        return "⚠️ [bold yellow]Error[/bold yellow]"
 
 
-## БД.
+## DB.
 def DB(db_base):
     try:
         with open(db_base, "r", encoding="utf8") as f_r:
@@ -37,75 +36,77 @@ def DB(db_base):
             db = base64.b64decode(db)
             db = db[::-1]
             db = base64.b64decode(db)
-            trinity = json.loads(db.decode("UTF-8"))
+            db_str = db.decode("UTF-8")
+            db_str = db_str.replace("errorTypе", "errorType").replace("errоrMsg", "errorMsg")
+            trinity = json.loads(db_str)
             return trinity
     except Exception:
-        #print(Style.BRIGHT + Fore.RED + "Упс, что-то пошло не так..." + Style.RESET_ALL)
+        #print(Style.BRIGHT + Fore.RED + "Oops, something went wrong..." + Style.RESET_ALL)
         #sys.exit()
         raise
 
 
-## Пожертвование.
+## Donation.
 def donate():
     print("")
     console.print(Panel(f"""[cyan]
 ╭Donate/Buy:
-├──ЮMoney:: [white]4100111364257544[/white]
-├──Сбер_карта:: [white]2202208013277075[/white]
+├──YuMoney:: [white]4100111364257544[/white]
+├──Sber_card:: [white]2202208013277075[/white]
 ├──Raiffeisen_card:: [white]2200300512321074[/white]
-└──По номеру телефона (СБП/Банк Юмани):: [white]+79004753581[white]
+└──By phone number (SBP/YuMoney Bank):: [white]+79004753581[white]
 
-[bold green]Оплатить софт можно по любым реквизитам, но самым предпочтительным способом является — СБП (перевод по номеру телефона без комиссий с карты любого банка).
+[bold green]You can pay for the software using any of the listed payment methods, but the most preferred method is SBP (transfer by phone number without fees from any bank card).
 
-Если пользователя заинтересовало ПО [red]Snoop demo version[/red], то он может приобрести [cyan]Snoop full version[/cyan], поддержав развитие IT-проекта[/bold green] [bold cyan]20$[/bold cyan] [bold green]или[/bold green] [bold cyan]1600р.[/bold cyan]
-[bold green]При пожертвовании/покупке в сообщении/письме укажите:[/bold green]
+If the user is interested in [red]Snoop demo version[/red], they can purchase [cyan]Snoop full version[/cyan], supporting the development of this IT project[/bold green] [bold cyan]20$[/bold cyan] [bold green]or[/bold green] [bold cyan]1600 RUB.[/bold cyan]
+[bold green]When donating/purchasing, specify in the message/email:[/bold green]
 
     \"\"\"
-    [cyan]На развитие Snoop Project: ваш[/cyan] [bold cyan]e-mail[/bold cyan][cyan],[/cyan]
-    [cyan]full[/cyan] [bold cyan]version[/bold cyan] [cyan]for Windows или full version for Linux,[/cyan]
-    [bold cyan]статус[/bold cyan] [cyan]пользователя: Физ.лицо; ИП; Юр.лицо (если покупка ПО).[/cyan]
+    [cyan]For the development of Snoop Project: your[/cyan] [bold cyan]e-mail[/bold cyan][cyan],[/cyan]
+    [cyan]full[/cyan] [bold cyan]version[/bold cyan] [cyan]for Windows or full version for Linux,[/cyan]
+    [bold cyan]status[/bold cyan] [cyan]of user: Individual; Sole Proprietor; Legal Entity (if purchasing software).[/cyan]
     \"\"\"
 
-[bold green]В ближайшее время на email пользователя придёт чек о покупке и ссылка для скачивания Snoop full version готовой сборки, то есть исполняемого файла, для Windows — это 'snoop_cli.exe', для GNU/Linux — 'snoop_cli.bin'.
+[bold green]Shortly after, the user will receive a purchase receipt and a download link for the Snoop full version ready build, i.e. an executable file: for Windows — 'snoop_cli.exe', for GNU/Linux — 'snoop_cli.bin'.
 
-Snoop в исполняемом виде (build-версия) предоставляется по лицензии, с которой пользователь должен ознакомиться перед покупкой ПО.
-Лицензия для Snoop Project в исполняемом виде находится в rar-архивах демо версий Snoop по ссылке: [/bold green]
-[cyan]https://github.com/snooppr/snoop/releases[/cyan][bold green], также лицензия доступна по команде::
-'[/bold green][cyan]snoop_cli.bin --version[/cyan][bold green]' или '[/bold green][cyan]snoop_cli.exe --version[/cyan][bold green]' у исполняемого файла.
+Snoop in executable form (build version) is provided under a license that the user must review before purchasing the software.
+The license for Snoop Project in executable form is located in the rar archives of the Snoop demo versions at: [/bold green]
+[cyan]https://github.com/snooppr/snoop/releases[/cyan][bold green], the license is also available via command::
+'[/bold green][cyan]snoop_cli.bin --version[/cyan][bold green]' or '[/bold green][cyan]snoop_cli.exe --version[/cyan][bold green]' for the executable file.
 
-Если софт требуется пользователю для служебных или образовательных задач, например, десять лицензий на ПО для ВУЗа, напишите письмо на e-mail разработчика в свободной форме.
-Всем студентам (независимо от учебного заведения или направления) ПО Snoop full version предоставляется с 50% скидкой.
+If the software is needed for professional or educational tasks, for example, ten licenses for a university, write a free-form email to the developer.
+All students (regardless of institution or field of study) get Snoop full version with a 50% discount.
 
 Snoop full version:
  * 5300+ Websites;
- * поддержка локальной и онлайн database Snoop;
- * подключение к БД Snoop (online), которая расширяется/обновляется;
- * доступен автооптимизированный, быстрый и агрессивный режимы поиска;
- * доступна пользовательская настройка разгона скорости работы ПО;
- * плагины без ограничений;
- * ru техподдержка от разработчика ПО;
- * предоставление обновлённых билдов;
- * отключены всплывающие окна в HTML-отчёте про упоминание Snoop demo version.[/bold green]
-[bold red]Ограничения Snoop demo version:
- * database Snoop сокращена в > 15 раз;
- * необновляемая database Snoop;
- * отключены некоторые опции/плагины.[/bold red]
+ * support for local and online Snoop database;
+ * connection to Snoop DB (online), which is expanded/updated;
+ * auto-optimized, fast and aggressive search modes available;
+ * user-configurable speed acceleration settings;
+ * plugins without restrictions;
+ * tech support from the software developer;
+ * provision of updated builds;
+ * disabled pop-up windows in the HTML report about Snoop demo version.[/bold green]
+[bold red]Snoop demo version limitations:
+ * Snoop database reduced by > 15x;
+ * non-updatable Snoop database;
+ * some options/plugins disabled.[/bold red]
 
 [bold green]E-mail:[/bold green] [cyan]snoopproject@protonmail.com[/cyan]
-[bold green]Исходный код:[/bold green] [cyan]https://github.com/snooppr/snoop[/cyan]
+[bold green]Source code:[/bold green] [cyan]https://github.com/snooppr/snoop[/cyan]
 
-❗️[bold yellow] Обратите внимание, что из-за цензуры письма с 'mailru' и 'yandex' не доходят до международного почтового сервиса 'protonmail'. Пользователи mailru/yandex, пишите запросы на запасную почту.[/bold yellow]
+❗️[bold yellow] Note that due to censorship, emails from 'mailru' and 'yandex' do not reach the international mail service 'protonmail'. Users of mailru/yandex, send requests to the backup email.[/bold yellow]
 [bold green]E-mail: [/bold green][cyan]snoopproject@ya.ru[/cyan]
 """,
-                        title="[bold red]demo: (Публичная оферта)",
+                        title="[bold red]demo: (Public Offer)",
                         border_style="bold blue"))
 
     try:
         webbrowser.open("https://yoomoney.ru/to/4100111364257544")
     except Exception:
-        print("\033[31;1mНе удалось открыть браузер\033[0m")
+        print("\033[31;1mFailed to open browser\033[0m")
 
-    print(Style.BRIGHT + Fore.RED + "Выход")
+    print(Style.BRIGHT + Fore.RED + "Exit")
     sys.exit()
 
 
@@ -116,79 +117,79 @@ def buy():
 function bay() {document.write('\
 <html>\
 <head>\
-	<title>💳 Donate/Buy Snoop Project</title>\
+\t<title>💳 Donate/Buy Snoop Project</title>\
 </head>\
-<body style=\"background-color: #c0c0c0\">\
+<body style=\\"background-color: #c0c0c0\\">\
 <p><span style="color:#009a7c"><big>╭</big><span style="font-size:36px">Donate/Buy</span>:</span><br />\
-<span style="color:#009a7c"><big>├──</big>ЮMoney::</span> <a href="https://yoomoney.ru/to/4100111364257544" target="_blank">4100111364257544</a><br />\
-<span style="color:#009a7c"><big>├──</big>Сбер_карта:: </span><strong>2202208013277075</strong><br />\
+<span style="color:#009a7c"><big>├──</big>YuMoney::</span> <a href="https://yoomoney.ru/to/4100111364257544" target="_blank">4100111364257544</a><br />\
+<span style="color:#009a7c"><big>├──</big>Sber_card:: </span><strong>2202208013277075</strong><br />\
 <span style="color:#009a7c"><big>├──</big>Raiffeisen_card:: </span><strong>2200300512321074</strong><br />\
-<span style="color:#009a7c"><big>├──</big>По номеру телефона <em>(СБП: банк Юмани)</em>:: </span><strong>+79004753581</strong><br />\
-<span style="color:#009a7c"><big>└──</big>СберБанк Онлайн <em>(мобильное приложение)</em>:: </span><strong>QR код</strong><br />\
-<img alt="QR код только для пользователей Сбербанк Онлайн." src="https://raw.githubusercontent.com/snooppr/snoop/refs/heads/master/web/QR_donate_SberBank.png" style="height:200px; width:200px" /></p>\
+<span style="color:#009a7c"><big>├──</big>By phone number <em>(SBP: YuMoney bank)</em>:: </span><strong>+79004753581</strong><br />\
+<span style="color:#009a7c"><big>└──</big>SberBank Online <em>(mobile app)</em>:: </span><strong>QR code</strong><br />\
+<img alt="QR code for SberBank Online users only." src="https://raw.githubusercontent.com/snooppr/snoop/refs/heads/master/web/QR_donate_SberBank.png" style="height:200px; width:200px" /></p>\
 \
-<p><span style="font-size:18px"><span style="color:#007500">Оплатить софт можно по <u>любым реквизитам</u>, но самым предпочтительным способом является &mdash; СБП <em>(перевод по номеру телефона без комиссий с карты любого банка)</em>.</span></span></p>\
+<p><span style="font-size:18px"><span style="color:#007500">You can pay for the software using <u>any payment method</u>, but the most preferred method is SBP <em>(transfer by phone number without fees from any bank card)</em>.</span></span></p>\
 \
-<p><span style="font-size:18px"><span style="color:#007500">Если пользователя заинтересовало ПО Snoop demo version, то он может приобрести <strong>Snoop full version</strong>, поддержав развитие IT-проекта <strong>20$</strong> или <strong>1600р</strong>.<br />\
-При пожертвовании/покупке в сообщении/письме укажите:</span></span></p>\
+<p><span style="font-size:18px"><span style="color:#007500">If the user is interested in Snoop demo version, they can purchase <strong>Snoop full version</strong>, supporting the development of this IT project <strong>20$</strong> or <strong>1600 RUB</strong>.<br />\
+When donating/purchasing, specify in the message/email:</span></span></p>\
 \
-<p><span style="font-size:18px">&nbsp;&nbsp;&nbsp; \&quot;\&quot;\&quot;<br />\
-<span style="color:#009a7c">&nbsp;&nbsp;&nbsp; На развитие Snoop Project: ваш <strong>e-mail</strong>,<br />\
-&nbsp;&nbsp;&nbsp; full <strong>version</strong> for Windows или full version for Linux,<br />\
-&nbsp;&nbsp;&nbsp; <strong>статус</strong> пользователя: Физ.лицо; ИП; Юр.лицо <em>(если покупка ПО)</em>.</span><br />\
-&nbsp;&nbsp;&nbsp; \&quot;\&quot;\&quot;</span></p>\
+<p><span style="font-size:18px">&nbsp;&nbsp;&nbsp; \\&quot;\\&quot;\\&quot;<br />\
+<span style="color:#009a7c">&nbsp;&nbsp;&nbsp; For the development of Snoop Project: your <strong>e-mail</strong>,<br />\
+&nbsp;&nbsp;&nbsp; full <strong>version</strong> for Windows or full version for Linux,<br />\
+&nbsp;&nbsp;&nbsp; <strong>status</strong> of user: Individual; Sole Proprietor; Legal Entity <em>(if purchasing software)</em>.</span><br />\
+&nbsp;&nbsp;&nbsp; \\&quot;\\&quot;\\&quot;</span></p>\
 \
-<p><span style="font-size:18px"><span style="color:#007500">В ближайшее время на email пользователя придёт чек о покупке и ссылка для скачивания Snoop full version готовой сборки, <br>\
-то есть исполняемого файла, для Windows &mdash; это &#39;snoop_cli.exe&#39;, для GNU/Linux &mdash; &#39;snoop_cli.bin&#39;.</span></span></p>\
+<p><span style="font-size:18px"><span style="color:#007500">Shortly after, the user will receive a purchase receipt and a download link for the Snoop full version ready build, <br>\
+i.e. an executable file: for Windows &mdash; &#39;snoop_cli.exe&#39;, for GNU/Linux &mdash; &#39;snoop_cli.bin&#39;.</span></span></p>\
 \
-<p><span style="font-size:18px"><span style="color:#007500">Snoop в исполняемом виде <em>(build-версия)</em> предоставляется по лицензии, с которой пользователь должен ознакомиться перед покупкой ПО.<br />\
-Лицензия для Snoop Project в исполняемом виде находится в rar-архивах демо версий Snoop по ссылке:</span><br />\
-<a href="https://github.com/snooppr/snoop/releases" target="_blank">https://github.com/snooppr/snoop/releases</a> <span style="color:#007500">, также лицензия доступна по команде::<br />\
-&#39;</span><strong><span style="color:#16a085">snoop_cli.bin --version</span></strong><span style="color:#007500">&#39; или &#39;</span><strong><span style="color:#16a085">snoop_cli.exe --version</span></strong><span style="color:#007500">&#39; у исполняемого файла.</span></span></p>\
+<p><span style="font-size:18px"><span style="color:#007500">Snoop in executable form <em>(build version)</em> is provided under a license that the user must review before purchasing the software.<br />\
+The license for Snoop Project in executable form is located in the rar archives of the Snoop demo versions at:</span><br />\
+<a href="https://github.com/snooppr/snoop/releases" target="_blank">https://github.com/snooppr/snoop/releases</a> <span style="color:#007500">, the license is also available via command::<br />\
+&#39;</span><strong><span style="color:#16a085">snoop_cli.bin --version</span></strong><span style="color:#007500">&#39; or &#39;</span><strong><span style="color:#16a085">snoop_cli.exe --version</span></strong><span style="color:#007500">&#39; for the executable file.</span></span></p>\
 \
-<p><span style="font-size:18px"><span style="color:#007500">Если софт требуется пользователю для служебных или образовательных задач, например, десять лицензий на ПО для ВУЗа, напишите письмо на e-mail разработчика в свободной форме.<br />\
-Всем студентам <em>(независимо от учебного заведения или направления)</em> ПО Snoop full version предоставляется с <strong>50%</strong> скидкой.</span></span></p>\
+<p><span style="font-size:18px"><span style="color:#007500">If the software is needed for professional or educational tasks, for example, ten licenses for a university, write a free-form email to the developer.<br />\
+All students <em>(regardless of institution or field of study)</em> get Snoop full version with a <strong>50%</strong> discount.</span></span></p>\
 \
 <p><span style="font-size:18px"><span style="color:#007500">Snoop full version:</span></span></p>\
 \
 <ul>\
-	<li><span style="font-size:18px"><span style="color:#007500">&nbsp;5300+ Websites;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#007500">&nbsp;поддержка локальной и онлайн database Snoop;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#007500">&nbsp;подключение к БД Snoop (online), которая расширяется/обновляется;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#007500">&nbsp;доступен автооптимизированный, быстрый и агрессивный режимы поиска;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#007500">&nbsp;доступна пользовательская настройка разгона скорости работы ПО;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#007500">&nbsp;плагины без ограничений;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#007500">&nbsp;ru техподдержка от разработчика ПО;</span></span></li>\
-    <li><span style="font-size:18px"><span style="color:#007500">&nbsp;предоставление обновлённых билдов;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#007500">&nbsp;отключены всплывающие окна в HTML-отчёте про упоминание Snoop demo version.</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#007500">&nbsp;5300+ Websites;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#007500">&nbsp;support for local and online Snoop database;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#007500">&nbsp;connection to Snoop DB (online), which is expanded/updated;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#007500">&nbsp;auto-optimized, fast and aggressive search modes available;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#007500">&nbsp;user-configurable speed acceleration settings;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#007500">&nbsp;plugins without restrictions;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#007500">&nbsp;tech support from the software developer;</span></span></li>\
+    <li><span style="font-size:18px"><span style="color:#007500">&nbsp;provision of updated builds;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#007500">&nbsp;disabled pop-up windows in the HTML report about Snoop demo version.</span></span></li>\
 </ul>\
 \
-<p><span style="font-size:18px"><span style="color:#e74c3c">Ограничения Snoop demo version:</span></span></p>\
+<p><span style="font-size:18px"><span style="color:#e74c3c">Snoop demo version limitations:</span></span></p>\
 \
 <ul>\
-	<li><span style="font-size:18px"><span style="color:#e74c3c">database Snoop сокращена в &gt; 15 раз;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#e74c3c">необновляемая database Snoop;</span></span></li>\
-	<li><span style="font-size:18px"><span style="color:#e74c3c">отключены некоторые опции/плагины.</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#e74c3c">Snoop database reduced by &gt; 15x;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#e74c3c">non-updatable Snoop database;</span></span></li>\
+\t<li><span style="font-size:18px"><span style="color:#e74c3c">some options/plugins disabled.</span></span></li>\
 </ul>\
 \
 <p><span style="font-size:18px"><span style="color:#007500">E-mail:</span> <span style="color:#009a7c"><strong>snoopproject@protonmail.com</strong></span><br />\
-<span style="color:#007500">Исходный код: </span><a href="https://github.com/snooppr/snoop" target="_blank">https://github.com/snooppr/snoop</a></span></p>\
+<span style="color:#007500">Source code: </span><a href="https://github.com/snooppr/snoop" target="_blank">https://github.com/snooppr/snoop</a></span></p>\
 \
-<p><span style="font-size:18px">❗️<span style="color:#e15700">Обратите внимание, что из-за цензуры письма с &#39;mailru&#39; и &#39;yandex&#39; не доходят до международного почтового сервиса &#39;protonmail&#39;. <br>\
-Пользователи mailru/yandex пишите запросы на запасную почту.</span><br />\
+<p><span style="font-size:18px">❗️<span style="color:#e15700">Note that due to censorship, emails from &#39;mailru&#39; and &#39;yandex&#39; do not reach the international mail service &#39;protonmail&#39;. <br>\
+Users of mailru/yandex, send requests to the backup email.</span><br />\
 <span style="color:#007500">E-mail:</span><span style="color:#009900"> </span><span style="color:#009a7c"><strong>snoopproject@ya.ru</strong></span></span></p>\
 <hr />\
-<p>Возврат: &#39;F5&#39;</p>\
+<p>Return: &#39;F5&#39;</p>\
 </body>\
 </html>')}
 </script>"""
     return donate_buy
 
-## Лого.
+## Logo.
 def logo(text, color="\033[31;1m", exit=True):
     if sys.platform != 'win32' or (sys.platform == 'win32' and int(platform.version().split('.')[2]) >= 19045):
         with console.screen():
-            console.print("""[cyan]
+            console.print(r"""[cyan]
  ____                                      
 /\  _`\                                    
 \ \,\L\_\    ___     ___     ___   _____   
@@ -210,91 +211,91 @@ def logo(text, color="\033[31;1m", exit=True):
         time.sleep(0.04)
         print(f"{color}{i}", end='', flush=True)
     if exit:
-        print("\033[31;1m\n\nВыход")
+        print("\033[31;1m\n\nExit")
         sys.exit()
 
 
-# snoop.py Справка Модули 'if mod == 'help'.
+# snoop.py Help Modules 'if mod == 'help'.
 def help_module_1():
-    print("""\033[32;1m└──[Справка]\033[0m
+    print("""\033[32;1m└──[Help]\033[0m
 
 \033[32;1m========================
-| Плагин GEO_IP/domain |
+| GEO_IP/domain Plugin |
 ========================\033[0m \033[32m\n
-1) Реализует онлайн одиночный поиск цели по IP/url/domain и предоставляет статистическую информацию: IPv4/v6; GEO-координаты/ссылку; локацию.
-(Лёгкий ограниченный поиск).
+1) Implements online single target search by IP/url/domain and provides statistical information: IPv4/v6; GEO coordinates/link; location.
+(Light limited search).
 
-2) Реализует онлайн поиск цели по списку данных: и предоставляет статистическую и визуализированную информацию: IPv4/v6; GEO-координаты/ссылки; страны/города; отчеты в CLI/txt/csv форматах; предоставляет визуализированный отчет на картах OSM.
-(Умеренный небыстрый поиск: ограничения запросов:: 15к/час; не предоставляет информацию о провайдерах).
+2) Implements online target search by data list: and provides statistical and visualized information: IPv4/v6; GEO coordinates/links; countries/cities; reports in CLI/txt/csv formats; provides visualized report on OSM maps.
+(Moderate slow search: request limits:: 15k/hour; does not provide information about providers).
 
-3) Реализует офлайн поиск цели по списку данных, используя БД: и предоставляет статистическую и визуализированную информацию: IPv4/v6; GEO-координаты/ссылки; локации; провайдеры; отчеты в CLI/txt/csv форматах; предоставляет визуализированный отчет на картах OSM.
-(Сильный и быстрый поиск).
+3) Implements offline target search by data list, using DB: and provides statistical and visualized information: IPv4/v6; GEO coordinates/links; locations; providers; reports in CLI/txt/csv formats; provides visualized report on OSM maps.
+(Strong and fast search).
 
-Результаты по 1 и 2 методу могут отличаться и быть неполными - зависит от персональных настроек DNS/IPv6 пользователя.
-Список данных — текстовый файл (в кодировке utf-8), который пользователь указывает в качестве цели, и который содержит ip, domain или url (или их комбинации).
+Results from methods 1 and 2 may differ and be incomplete - depends on user's personal DNS/IPv6 settings.
+Data list — a text file (in utf-8 encoding), which the user specifies as a target, and which contains ip, domain or url (or their combinations).
 
-Предназначение плагина — Образование/ИБ.
+Plugin purpose — Education/InfoSec.
 
 \033[32;1m============================
-| Плагин Reverse Vgeocoder |
+| Reverse Vgeocoder Plugin |
 ============================\033[0m\n
-\033[32mОбратный impresionante-геокодер от Snoop Project для визуализации координат на карте OSM и статистическим анализом в html/csv/txt форматах.
+\033[32mReverse impresionante-geocoder from Snoop Project for visualizing coordinates on OSM map with statistical analysis in html/csv/txt formats.
 
-Плагин умеет извлекать и обрабатывать координаты из любых зашумлённых текстовых файлов. Плагин реализует офлайн-поиск цели по заданным геокоординатам и предоставляет подробную статистическую и визуализированную информацию (full version).
-Повышенная точность у объектов в зоне RU; EU; CIS локаций относительно остального мира.
+The plugin can extract and process coordinates from any noisy text files. The plugin implements offline target search by given geocoordinates and provides detailed statistical and visualized information (full version).
+Increased accuracy for objects in RU; EU; CIS locations relative to the rest of the world.
 
-С помощью данного плагина (full version) пользователь способен извлечь, визуализировать и проанализировать информацию о тысячах геокоординатах за секунды.
+With this plugin (full version), the user can extract, visualize and analyze information about thousands of geocoordinates in seconds.
 
-Предназначение плагина — CTF/Образование.\033[0m
+Plugin purpose — CTF/Education.\033[0m
 
 \033[32;1m========================
-| Плагин Yandex_parser |
+| Yandex_parser Plugin |
 ========================\033[0m\n
-\033[32mПлагин позволяет получить информацию о пользователях Яндекс-сервисов:
-Я_Отзывы; Я_Кью; Я_Маркет; Я_Музыка; Я_Дзен; Я_Диск; E-mail, Name.
-И связать полученные данные между собой с высокой скоростью и масштабно.
+\033[32mThe plugin allows getting information about Yandex service users:
+Ya_Reviews; Ya_Q; Ya_Market; Ya_Music; Ya_Dzen; Ya_Disk; E-mail, Name.
+And linking the obtained data together at high speed and scale.
 
-Плагин разработан на идее и материалах уязвимости, отчёты были отправлены Яндексу в рамках программы «Охота за ошибками» в 2020-2021 гг.
-Попал в зал славы, получил дважды финансовое вознаграждение, а Яндекс исправил 'ошибки' по своему усмотрению.
+The plugin was developed based on the idea and materials of a vulnerability, reports were sent to Yandex as part of the 'Bug Bounty' program in 2020-2021.
+Made it to the hall of fame, received financial reward twice, and Yandex fixed the 'bugs' at their discretion.
 
-Предназначение плагина — OSINT.
+Plugin purpose — OSINT.
 
-Подробнее о плагинах см. 'Общее руководство Snoop Project.pdf'.\033[0m""")
-    console.rule("[bold red]Конец справки[/bold red]")
+For more details about plugins see 'Snoop Project General Guide.pdf'.\033[0m""")
+    console.rule("[bold red]End of help[/bold red]")
 
 
-# snoopplugins.py Справка Модуль Reverse Vgeocoder 'elif Vgeo == "help"'.
+# snoopplugins.py Help Module Reverse Vgeocoder 'elif Vgeo == "help"'.
 def help_vgeocoder_vgeo():
-    print("""\033[32;1m└──[Справка]\033[0m
+    print("""\033[32;1m└──[Help]\033[0m
 \033[32m
-В Snoop Project поддерживается два режима геокодирования:
-[*] Метод '\033[32;1mПростой\033[0m\033[32m':: На карте OSM (урезанный HTML-отчет) расставляются маркеры по координатам.
-Все маркеры подписаны геометками.
-Для данного метода доступны сокращенные отчёты с геометками в html/txt форматах.
+Snoop Project supports two geocoding modes:
+[*] Method '\033[32;1mSimple\033[0m\033[32m':: Markers are placed on the OSM map (trimmed HTML report) by coordinates.
+All markers are labeled with geotags.
+For this method, abbreviated reports with geotags in html/txt formats are available.
 
-[*] Метод '\033[32;1mПодробный\033[0m\033[32m':: На карте OSM (HTML-отчет) расставляются маркеры по координатам.
-Все маркеры подписаны геометками; странами; округами и городами. Доступны графики по странам/регионам, статистика и её фильтрация.
-Дополнительные отчёты (таблицы) сохраняются с подробностями в [.txt.csv] форматах.
-Данный метод точно расставляет маркеры с геометками, подписывает их адресами к ближайшим населенным пунктам или названиями природных объектов.
-Повышенная точность у объектов в зоне RU; EU; CIS локаций относительно остального мира.
+[*] Method '\033[32;1mDetailed\033[0m\033[32m':: Markers are placed on the OSM map (HTML report) by coordinates.
+All markers are labeled with geotags; countries; districts and cities. Charts by countries/regions, statistics and filtering are available.
+Additional reports (tables) are saved with details in [.txt.csv] formats.
+This method precisely places markers with geotags, labels them with addresses to the nearest settlements or names of natural objects.
+Increased accuracy for objects in RU; EU; CIS locations relative to the rest of the world.
 
-    Например, если пользователь загрузит для обработки координаты, указывающие в километре от г. Выкса на местность возле озера Разодейское, то маркер на карте OSM встанет точно у озера, а подписан он будет примерно так:
+    For example, if a user uploads coordinates pointing to a location near a lake one kilometer from the city of Vyksa, the marker on the OSM map will be placed exactly at the lake, and it will be labeled approximately as:
 
 \"\"\"\033[36m
-🌎 Координаты: 55.342595 42.230801
+🌎 Coordinates: 55.342595 42.230801
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Страна: RU
-Регион: Nizhny Novgorod Oblast
-Округ: Ozero Razodeyskoye\033[0m\033[32m
+Country: RU
+Region: Nizhny Novgorod Oblast
+District: Ozero Razodeyskoye\033[0m\033[32m
 \"\"\"
 
-Метод работает на основе — 'Евклидово дерево'.
+The method is based on — 'Euclidean tree'.
 
-\033[32;1mПлагин Reverse Vgeocoder\033[0m \033[32m- работает в офлайн-режиме и укомплектован специально разработанной гео-БД (некоторые БД предоставляются под свободной лицензией от download.geonames.org/export/dump/).
+\033[32;1mReverse Vgeocoder Plugin\033[0m \033[32m- works in offline mode and is equipped with a specially developed geo-DB (some DBs are provided under a free license from download.geonames.org/export/dump/).
 
-    Для обработки данных укажите при запросе текстовый файл с координатами в градусах в кодировке utf-8 (с расширением .txt или без расширения). Каждая строчка с геокоординатами (широта, долгота) должна быть записана в файле с новой строки (желательно).
-Snoop довольно умён: распознаёт и выбирает геокоординаты через запятую, пробелы или делает интеллектуальную выборку, вычищая случайные строки.
-    Пример файла с геокоординатами (как может выглядеть файл с координатами, который необходимо указывать):
+    To process data, specify a text file with coordinates in degrees in utf-8 encoding (with .txt extension or no extension). Each line with geocoordinates (latitude, longitude) should be written in the file on a new line (preferably).
+Snoop is quite smart: it recognizes and selects geocoordinates separated by commas, spaces, or makes intelligent selection, cleaning out random strings.
+    Example geocoordinates file (how a file with coordinates that needs to be specified might look):
 
 \"\"\"\033[36m
 51.352,   -108.625
@@ -302,86 +303,86 @@ Snoop довольно умён: распознаёт и выбирает гео
 52.40662,66.77631
 53.028 -104.680
 54.505/73.773
-Москва55.75, 37.62 Калининград54.71, 20.51 Ростов-на-Дону47.23, 39.72
-случайная_строка1, которая_будет обработана Казань 55.7734/49.1436
-случайная строка2, которая не будет обработана\033[0m\033[32m
+Moscow55.75, 37.62 Kaliningrad54.71, 20.51 Rostov-on-Don47.23, 39.72
+random_string1, which_will be processed Kazan 55.7734/49.1436
+random string2, which will not be processed\033[0m\033[32m
 \"\"\"
 
-    По окончании рендеринга откроется web-browser с визуальным результатом.
-Все результаты сохраняются в '~/.snoop/results/plugins/ReverseVgeocoder/*[.txt.html.csv]'.
-Для статистической обработки информации (сортировка по странам/координатам/raw_данным и т.д.) пользователь может изучить отчёт в csv-формате.
-Если графики не отображаются в вашем HTML-отчёте, попробуйте открыть репорт в другом браузере.
-    Это удобный плагин, если пользователю необходимо, например, не только обработать геокоординаты, но и найти хаотичные данные, или наоборот.""")
+    After rendering is complete, a web browser will open with the visual result.
+All results are saved in '~/.snoop/results/plugins/ReverseVgeocoder/*[.txt.html.csv]'.
+For statistical processing of information (sorting by countries/coordinates/raw_data etc.) the user can study the report in csv format.
+If charts are not displayed in your HTML report, try opening the report in a different browser.
+    This is a convenient plugin if the user needs, for example, not only to process geocoordinates, but also to find chaotic data, or vice versa.""")
 
 
-# snoopplugins.py Справка Модуль Reverse Vgeocoder 'elif Ya == "help"'.
+# snoopplugins.py Help Module Reverse Vgeocoder 'elif Ya == "help"'.
 def help_yandex_parser():
-    print("""\033[32;1m└──[Справка]
+    print("""\033[32;1m└──[Help]
 
-Однопользовательский режим\033[0m
-\033[32m[*] Логин — левая часть до символа '@', например, bobbimonov@ya.ru, логин
+Single-user mode\033[0m
+\033[32m[*] Login — the left part before the '@' symbol, for example, bobbimonov@ya.ru, login
 '\033[36mbobbimonov\033[0m\033[32m'.
-[*] Публичная ссылка на Яндекс.Диск — это ссылка для скачивания/просмотра материалов, которую пользователь выложил в публичный доступ, например,
-'\033[36mhttps://yadi.sk/d/7C6Z9q_Ds1wXkw\033[0m\033[32m' или '\033[36mhttps://disk.yandex.ru/d/7C6Z9q_Ds1wXkw\033[0m\033[32m'.
-[*] Идентификатор — хэш, который указан в url на странице пользователя, например, в сервисе Я.Район: 'https://local.yandex.ru/users/tr6r2c8ea4tvdt3xmpy5atuwg0/' идентификатор — '\033[36mtr6r2c8ea4tvdt3xmpy5atuwg0\033[0m\033[32m'.
-    По окончании успешного поиска выводится отчёт в CLI и открываются Яндекс-страницы пользователя в браузере.
-    Плагин Yandex_parser выдает меньше информации по идентификатору пользователя (в сравнении с другими методами), причина — fix уязвимости от Яндекса.
+[*] Public Yandex.Disk link — this is a download/view link for materials that the user has made public, for example,
+'\033[36mhttps://yadi.sk/d/7C6Z9q_Ds1wXkw\033[0m\033[32m' or '\033[36mhttps://disk.yandex.ru/d/7C6Z9q_Ds1wXkw\033[0m\033[32m'.
+[*] Identifier — a hash specified in the url on the user's page, for example, in the Ya.District service: 'https://local.yandex.ru/users/tr6r2c8ea4tvdt3xmpy5atuwg0/' the identifier is '\033[36mtr6r2c8ea4tvdt3xmpy5atuwg0\033[0m\033[32m'.
+    Upon successful search completion, a report is displayed in CLI and the user's Yandex pages are opened in the browser.
+    The Yandex_parser plugin provides less information by user identifier (compared to other methods), reason — vulnerability fix by Yandex.
 
-\033[32;1mМногопользовательский режим\033[0m
-\033[32m[*] Файл с именами пользователей — файл (в кодировке UTF-8 с расширением .txt или без него), в котором записаны логины.
-Каждый логин в файле должен быть записан с новой строки, например:
+\033[32;1mMulti-user mode\033[0m
+\033[32m[*] File with usernames — a file (in UTF-8 encoding with .txt extension or without it), containing logins.
+Each login in the file should be written on a new line, for example:
 
 \"\"\"
 \033[36mbobbimonov
 username
 username2
 username3
-случайная строка
+random string
 bobbimonov@ya.ru
 bobbimonov@ya.ru
 bobbimonov@ya.ru\033[0m
 \033[32m\"\"\"
 
-    При использовании многопользовательского режима по окончании поиска (быстро) выводится расширенный отчёт в CLI, сохраняется txt-отчёт о Яндекс-пользователях (с расширенными, структурированными данными) и открывается браузер с мини-отчётом (сгруппированные данные).
-    Плагин генерирует, но не проверяет 'доступность' персональных страниц пользователей по причине: частая защита страниц Я.капчей.
-Все результаты сохраняются в '\033[36m~/.snoop/results/plugins/Yandex_parser/*\033[0m\033[32m'\033[0m
-    \033[31;1mВ конце ноября 2022 года Яндекс закрыл публичный api, и возможно, данный плагин больше не заработает...\033[0m""")
+    When using multi-user mode, upon search completion (fast) an extended report is displayed in CLI, a txt report about Yandex users is saved (with extended, structured data) and a browser opens with a mini report (grouped data).
+    The plugin generates but does not check 'availability' of users' personal pages because: frequent Ya.captcha page protection.
+All results are saved in '\033[36m~/.snoop/results/plugins/Yandex_parser/*\033[0m\033[32m'\033[0m
+    \033[31;1mAt the end of November 2022, Yandex closed the public api, and possibly this plugin will no longer work...\033[0m""")
 
 
-# snoopplugins.py Справка Модуль GEO_IP/domain 'elif dipbaza'.
+# snoopplugins.py Help Module GEO_IP/domain 'elif dipbaza'.
 def geo_ip_domain():
-    print("\033[32;1m└──Справка\033[0m\n")
-    print("""\033[32m[*] Режим '\033[32;1mOnline поиск\033[0m\033[32m'. Модуль GEO_IP/domain от Snoop Project использует публичный api и создает статистическую и визуализированную информацию по ip/url/domain цели (массиву данных).
-    Ограничения: запросы ~15к/час, невысокая скорость обработки данных, отсутствие информации о провайдерах.
-    Преимущества использования 'Online поиска': в качестве входных данных можно использовать не только ip-адреса, но и domain/url.
-    Пример файла с данными (список.txt):
+    print("\033[32;1m└──Help\033[0m\n")
+    print("""\033[32m[*] Mode '\033[32;1mOnline search\033[0m\033[32m'. The GEO_IP/domain module from Snoop Project uses a public API and creates statistical and visualized information about the target's ip/url/domain (data array).
+    Limitations: requests ~15k/hour, slow data processing speed, no information about providers.
+    Advantages of using 'Online search': input data can include not only IP addresses, but also domain/url.
+    Example data file (list.txt):
 
 \"\"\"
 \033[36m1.1.1.1
 2606:2800:220:1:248:1893:25c8:1946
 google.com
 https://example.org/fo/bar/7564
-случайная строка\033[0m
+random string\033[0m
 \033[32m\"\"\"\033[0m
 
-\033[32m[*] Режим '\033[32;1mOffline поиск\033[0m\033[32m'. Модуль GEO_IP/domain от Snoop Project использует специальные базы данных и создает статистическую и визуализированную информацию по ip цели (массиву данных т.е. по ip-адресам).
-Преимущества использования 'Offline поиска': скорость (обработка тысяч ip без задержек), стабильность (отсутствие зависимости от интернет соединения и персональных настроек DNS/IPv6 пользователя), масштабный охват/покрытие (предоставляется информация об интернет-провайдерах).
+\033[32m[*] Mode '\033[32;1mOffline search\033[0m\033[32m'. The GEO_IP/domain module from Snoop Project uses special databases and creates statistical and visualized information about the target's ip (data array, i.e. IP addresses).
+Advantages of using 'Offline search': speed (processing thousands of IPs without delays), stability (no dependency on internet connection and user's personal DNS/IPv6 settings), extensive coverage (information about internet providers is provided).
 
-[*] Режим '\033[32;1mOffline_тихий поиск\033[0m\033[32m'. Тот же режим, что и режим 'Offline', но не выводит на печать в CLI промежуточные таблицы с данными. Режим даёт прирост производительности в несколько раз.
-    Пример файла с данными (список.txt):
+[*] Mode '\033[32;1mOffline_quiet search\033[0m\033[32m'. The same mode as 'Offline', but does not print intermediate data tables to CLI. This mode provides a performance increase of several times.
+    Example data file (list.txt):
 
 \"\"\"
 \033[36m8.8.8.8
 93.184.216.34
 2606:2800:220:1:248:1893:25c8:1946
-случайная строка\033[0m
+random string\033[0m
 \033[32m\"\"\"
 
-    Snoop довольно умён и способен определять и различать во входных данных: IPv4/v6/domain/url, вычищая ошибки и случайные строки.
-    По окончании обработки данных пользователю предоставляются:
-статистические отчеты в [txt/csv/html и визуализированные данные на карте OSM]. Если графики не отображаются в вашем HTML-отчёте, попробуйте открыть репорт в другом браузере.
-    Примеры для чего можно использовать модуль GEO_IP/domain от Snoop Project.
-Например, если у пользователя имеется список ip адресов от DDoS атаки,
-он может проанализировать откуда исходила  max/min атака и от кого (провайдеры).
-Решая квесты-CTF, где используются GPS/IPv4/v6.
-В конечном итоге использовать плагин в образовательных целях или из естественного любопытства (проверить любые ip-адреса и их принадлежность к провайдеру и местности).\033[0m""")
+    Snoop is quite smart and able to detect and distinguish in input data: IPv4/v6/domain/url, cleaning out errors and random strings.
+    After data processing, the user is provided with:
+statistical reports in [txt/csv/html and visualized data on OSM map]. If charts are not displayed in your HTML report, try opening the report in a different browser.
+    Examples of what the GEO_IP/domain module from Snoop Project can be used for.
+For example, if the user has a list of IP addresses from a DDoS attack,
+they can analyze where the max/min attack originated from and from whom (providers).
+Solving CTF quests where GPS/IPv4/v6 are used.
+Ultimately, using the plugin for educational purposes or out of natural curiosity (checking any IP addresses and their association with a provider and location).\033[0m""")

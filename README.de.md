@@ -12,7 +12,7 @@ das heißt, es steht dem durchschnittlichen Benutzer zur Verfügung *(14. Februa
 
 
    🇩🇪 **DEUTSCHE readme**  
- • [🇷🇺 РУССКИЙ readme](https://github.com/snooppr/snoop)  
+ • [🇷🇺 RUSSIAN readme](https://github.com/snooppr/snoop)  
  • [🇪🇸 ESPAÑOL readme](https://github.com/snooppr/snoop/blob/master/README.es.md "Por favor, siéntase libre de mejorar la traducción de esta página.")  
  • [🌎 ENGLISH readme](https://github.com/snooppr/snoop/blob/master/README.en.md)  
  • [🇨🇳 中国人 readme](https://github.com/snooppr/snoop/blob/master/README.cn.md "请随时改进此页面的翻译。")  
@@ -237,7 +237,7 @@ search arguments:
 $ python3 snoop.py nickname1 #Aus dem Quellcode ausgeführt
 $ snoop_cli.bin nickname1 #Ausführen eines Builds unter Linux
 # Oder es wird beispielsweise Kyrillisch unterstützt:
-$ python3 snoop.py олеся #Aus dem Quellcode ausgeführt
+$ python3 snoop.py olesya #Aus dem Quellcode ausgeführt
 # So suchen Sie nach einem Namen, der ein Leerzeichen enthält:
 $ snoop_cli.bin "ivan ivanov" #Ausführen eines Builds unter Linux
 $ snoop_cli.bin ivan_ivanov #Ausführen eines Builds unter Linux

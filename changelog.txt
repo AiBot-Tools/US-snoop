@@ -3,663 +3,662 @@
 ********
 *v1.4.3*
 ********
-* Расширена поисковая web-base Snoop ↑ 5300+ сайтов.
+* Expanded the Snoop web-base search to over 5300 websites.
 
-* Исправлено: невозможно было подключиться к онлайн БД Snoop на некоторых OS Windows в редакции 10.0.19045
-(за отчёт спасибо пользователю @TutovTamov, issue_105).
+* Fixed: unable to connect to the Snoop online database on some Windows OS 10.0.19045 editions
+(thanks to user @TutovTamov for the report, issue_105).
 
-* Улучшен алгоритм проверки usernames из файла и CLI
-(инспекция на запрещённые спецсимволы; номера телефонов; детектирование e-mail).
+* Improved algorithm for checking usernames from file and CLI
+(inspection for prohibited special characters; phone numbers; email detection).
 
-* Изменен алгоритм сортировки списка в HTML-отчёте на более эффективный: с проверками и оптимизацией
-(прирост производительности замечен на больших списках и слабых ПК, кроме того, сортировка стала
-явно упорядоченной: по эмодзи; локации; алфавиту, исключая имена url).
+* Changed the sorting algorithm of the list in the HTML report to a more efficient one: with checks and optimization
+(performance boost noticed on large lists and weak PCs, additionally, the sorting became
+explicitly ordered: by emoji; location; alphabet, excluding url names).
 
-* Добавлена (экспериментально) минимальная поддержка работы Snoop for macOS source_version
-(за тесты спасибо пользователю с макбуком @Nomaleus, issue_103).
+* Added (experimentally) minimal support for Snoop for macOS source_version
+(thanks to macOS user @Nomaleus for the tests, issue_103).
 
-* В GNU/Linux, Termux и macOS процессы не одинаково безопасны: в UNIX пд. OS процессы и потоки теперь разделены
-(хотя многопроцессорность с "защищенным от блокировок методом fork" являлась жизнеспособной и давала высокую
-производительность, на них нельзя полагаться в общем случае, существуют аналогичные отчёты по неполадкам с
-официального форума разработчиков Python, на некоторых версиях macOS в Snoop были рандомные сбои c multiprocessing,
-поэтому для macOS логика шустрых процессов переведена на безопасные, но медленные потоки).
+* On GNU/Linux, Termux and macOS, processes are not equally safe: in UNIX-like OSes, processes and threads are now separated
+(although multiprocessing with a "lock-protected fork method" was viable and provided high
+performance, they cannot be generally relied upon, there are similar issue reports from the
+official Python developer forum, on some macOS versions Snoop experienced random multiprocessing crashes,
+so for macOS the logic of fast processes was switched to safe but slower threads).
 
-* CSV-отчёт для русскоязычных пользователей OS Windows теперь генерируется с разделителем полей — ";"
-(для остальных пользователей разделитель остался — ",", для большей совместимости с Excel кодировка стала "utf-8-sig"). 
+* CSV report for Russian-speaking users on Windows OS is now generated with the field separator — ";"
+(for other users the separator remains — ",", for better Excel compatibility the encoding is now "utf-8-sig").
 
-* На OS старше Windows 7 поправлен лог обновления Snoop source версии.
+* Fixed the Snoop source version update log on OS older than Windows 7.
 
-* Добавлена CLI-заставка и для OS Windows, работает в редакции 22H2 и выше.
+* Added a CLI splash screen for Windows OS as well, working in edition 22H2 and higher.
 
-* На UNIX пд. OS в Snoop build версиях каталог "~/snoop" перемещён, стал скрытым: "~/.snoop"
-(сделано для того чтобы не захламлять домашнюю папку пользователя).
+* On UNIX-like OSes in Snoop build versions, the "~/snoop" directory was moved and became hidden: "~/.snoop"
+(done so as not to clutter the user's home folder).
 
-* Добавлена поддержка Python 3.14, формат справки — опция "-h/--help" адаптирован для обновленного python 3.14,
-в HTML-отчёт добавлен год написания аудиотреков
-(в CLI убраны тавтология с "help", цветной по умолчанию в Python 3.14 вывод в библиотеке "argparse").
+* Added Python 3.14 support, help format — "-h/--help" option adapted for updated python 3.14,
+added soundtrack writing year to HTML report
+(tautology with "help" removed in CLI, default colored output in Python 3.14 in "argparse" library).
 
-* Счетчик сайтов в build версиях, информирующий о БД full version при поиске в CLI, был статичным, стал динамичным.
+* Website counter in build versions, informing about the full version database during CLI search, changed from static to dynamic.
 ===================================================================================
 
 ********
 *v1.4.2*
 ********
-* Расширена поисковая web-base Snoop ↑ 4700+ сайтов.
+* Expanded the Snoop web-base search to over 4700 websites.
 
-* Исправлен подсчет bad_raw в случае, когда был задан поиск по множеству username's из CLI или с опцией
-'--userlist/-u', среди которых попадался невалидный nick в комбинациях: например, один из username's
-короче 3-х символов, номер телефона, кириллический или из спецсимволов, где ПО его отфильтровывает, 
-но позже на том же ресурсе принимался следующий, валидный username
-(при превышении bad_raw 2.5% параметр не рассчитывался, теперь подобные варианты просчитываются).
+* Fixed the calculation of bad_raw when searching a multiple of username's from CLI or with the
+'--userlist/-u' option, among which an invalid nick was encountered in combinations: for example, one of the username's
+is shorter than 3 characters, a phone number, Cyrillic, or with special characters, where the software filters it out,
+but later on the same resource the next, valid username was accepted
+(when bad_raw exceeded 2.5%, the parameter was not calculated; now such options are calculated).
 
-* Нетривиальное использование HTTP библиотек позволило на Snoop for Windows оптимизировать утилизацию
-ресурсов CPU, прирост производительности к скорости поиска на длинной дистанции составил ~20-25%.
+* Non-trivial use of HTTP libraries allowed optimizing CPU resource utilization on Snoop for Windows,
+resulting in a ~20-25% performance increase in search speed over long distances.
 
-* Немного повышена эффективность повторных запросов при неудачных попытках соединения.
+* Slightly increased the efficiency of repeated requests for unsuccessful connection attempts.
 
-* Оптимизирован алгоритм автоскорости поиска утилиты на слабых одноядерных VPS и мощных многоядерных ЭВМ с 
-OS GNU/Linux. Также изменены ограничения верхнего предела утилизации ресурсов ЭВМ при разгоне поиска вручную:
-на OS GNU/Linux, Android/Termux — планки подняты, на OS Windows — планка опущена.
+* Optimized the auto search speed algorithm on weak single-core VPS and powerful multi-core machines with
+GNU/Linux OS. Also changed the upper limit restrictions of computer resource utilization for manual search acceleration:
+on GNU/Linux, Android/Termux — limits raised; on Windows OS — limit lowered.
 
-* Ускорена работа ПО в режиме '--save-page/-S': поиск и сохранение локальных HTML-страничек.
+* Accelerated software operation in '--save-page/-S' mode: finding and saving local HTML pages.
 
-* На OS GNU/Linux и Android/Termux прерывание работы софта с безопасным высвобождением ресурсов немного
-ускорено и составляет менее 1 сек. (Ctrl +c).
+* On GNU/Linux and Android/Termux OSes, aborting the software operation with safe resource release is slightly
+accelerated and takes less than 1 sec. (Ctrl + c).
 
-* На Snoop for Android/Termux добавлено оповещение о недоступности диска и предложение: что бы Snoop Project
-автоматически исправил ошибку доступа к общедоступному каталогу в OS Android "/storage/emulated/0/snoop/*"
-(Если пользователь новичок устанавливал Termux впервые и собирал Snoop из исходного кода, не читая инструкцию, 
-т.е. пропуская шаги, то Snoop автоматически не мог создавать общедоступный каталог для результатов поиска и 
-открывать data за пределами Termux, issue_95, issue_96, issue_97.
+* On Snoop for Android/Termux, added notification of disk unavailability and an offer: for Snoop Project
+to automatically fix the access error to the public directory in Android OS "/storage/emulated/0/snoop/*"
+(If a beginner user installed Termux for the first time and built Snoop from source code without reading the instructions,
+i.e., skipping steps, Snoop could not automatically create a public directory for search results and
+open data outside Termux, issue_95, issue_96, issue_97).
 
-* Изменен нижний порог с 2.5% до 2% при срабатывании оповещений Bad_raw. Также при превышении bad_raw 2%
-в CLI Snoop full version добавлена пример-подсказка с предложением изменить поиск, минуя сбойные ресурсы.
+* Changed the lower threshold from 2.5% to 2% for triggering Bad_raw notifications. Also, when bad_raw exceeds 2%
+in CLI Snoop full version, an example hint is added offering to modify the search, bypassing problematic resources.
 
-* В CLI Snoop demo version добавлено оповещение о том, как можно получить Snoop full version без чтения справки
+* In CLI Snoop demo version, added a notification on how to get Snoop full version without reading help
 (issues/85).
 
-* В CLI и csv отчеты добавлен "плавающий" параметр bad_zone — главные одна/две геолокации,
-в которых чаще всего происходят ошибки соединения в основном из-за интернет цензуры.
+* In CLI and csv reports, added a "floating" parameter bad_zone — top one/two geolocations
+where connection errors occur most often mainly due to Internet censorship.
 
-* В txt отчёте улучшено форматирование столбцов, сделан реверс данных: "Адрес | Ресурс" и добавлен параметр "Гео".
-В html отчёте усилена визуализация разбивки по странам/скобки. В csv отчёте заменен столбец "username"
-на строку "Nick", добавлен параметр отслеживания сайтов со статусом: "завис"
-(редкое явление, когда какой-нибудь ресурс временно подвисает:
-подавляет выставленные лимиты в т.ч. и на низком уровне redirect/timeout запросов, подольше удерживая ресурсы ЭВМ).
+* In txt report, improved column formatting, reversed the data: "Address | Resource" and added the "Geo" parameter.
+In the html report, enhanced the visual breakdown by countries/brackets. In the csv report, replaced the "username" column
+with the "Nick" string, and added a tracking parameter for sites with the status: "frozen"
+(a rare phenomenon when a resource temporarily hangs:
+suppressing the set limits, including at the low level of redirect/timeout requests, holding computer resources longer).
 
-* В HTML-отчете изменена функция кнопки, которая ранее вела на страницу донатов Юмани
-(кнопка теперь генерирует HTML: Donate/Buy с методами поддержки проекта в т.ч. и QR-кодом).
+* In the HTML report, changed a button function that previously led to the YooMoney donations page
+(the button now generates HTML: Donate/Buy with project support methods, including a QR code).
 
-* Функции: удаление кэша, обновление ПО, проверка БД — зациклены
-(при взаимодействии с ними и неверном выборе/опечатке происходит не выход из программы, 
-а повторный запрос на ввод с подсказкой).
+* Functions: clear cache, update software, verify DB are looped
+(when interacting with them and making a wrong choice/typo, the program does not exit,
+but prompts for input again with a hint).
 
-* Уменьшена зависимость от кол-ва сторонних библиотек в Snoop demo version:
-убран плагин с частичным функционалом "Reverse Vgeocoder".
-(Унифицирован способ самостоятельной сборки Snoop for Android/Termux & Desktop, т.е. синхронизированы зависимости 
-между Snoop for Termux и Snoop for Desktop. Ускорены: сборка проекта из исходного кода и запуск Snoop build версии).
+* Reduced dependency on the number of non-standard libraries in Snoop demo version:
+removed the plugin with partial functionality "Reverse Vgeocoder".
+(Standardized the method of self-building Snoop for Android/Termux & Desktop, i.e., localized dependencies
+between Snoop for Termux and Snoop for Desktop. Accelerated: building the project from source code and launching Snoop build versions).
 
-* На Snoop full version for Windows по окончанию поиска добавлена ненавязчивая, по событиям,
-подсказка про оптимизацию скорости поиска.
+* On Snoop full version for Windows, an unobtrusive, event-driven hint about optimizing search speed was added
+at the end of the search.
 
-* В CLI добавлено оповещение и рекомендация, как исправить/улучшить работу утилиты, если пользователь собрал Snoop
-из исходного кода, но при сборке пренебрег инструкциями/документацией
-(при этом ПО не прерывает работу, оповещает пользователя и переключается в режиме совместимости, например,
-если используются устаревшие версии HTTP библиотек/API и c прекратившим жизненный цикл Python 3.7).
+* In the CLI, added a notification and recommendation on how to fix/improve the utility if the user built Snoop
+from source code but ignored the instructions/documentation during the build
+(the software doesn't stop, but notifies the user and switches to compatibility mode, for example,
+if outdated HTTP library/API versions are used with the end-of-life Python 3.7).
 
-* В блок 'snoop info', секция 'Recommended pool', опция '--version/-v' добавлены ~расчеты по требованиям к ресурсам ЭВМ
-для нормальной работы ПО в любых конфигурациях при его разгоне вручную на разных OS.
+* In the 'snoop info' block, 'Recommended pool' section, '--version/-v' option, added ~calculations for computer resource requirements
+for normal software operation in any configurations during manual acceleration on different OS.
 
-* Незначительные визуальные изменения в CLI.
+* Minor visual changes in the CLI.
 
-* Проведено агрессивное сжатие репозитория. Сохранен полный бэкап истории.
-Пользователи, собирающие, обновляющие Snoop из исходного кода, должны сделать 'git clone' по-новому.
+* Aggressively compressed the repository. The full history backup is preserved.
+Users building/updating Snoop from source code must do 'git clone' anew.
 ===================================================================================
 
 *********
 *v1.4.1a*
 *********
-* (a) Убрана страница донатов CloudTips. Build-версия 'snoop_cli' для GNU/Linux переименована в 'snoop_cli.bin'
-и другие незначительные некоторые изменения.
+* (a) CloudTips donation page removed. Build version 'snoop_cli' for GNU/Linux renamed to 'snoop_cli.bin'
+and some other minor changes.
 
-* Расширена поисковая web-base Snoop ↑ 4200+ сайтов.
+* Expanded the Snoop web-base search to over 4200 websites.
 
-* Улучшен алгоритм агрессивного режима поиска: опция '--quick/-q' в Snoop for Windows.
-(ускорение поиска составляет от 5% до 200% в зависимости от версии Windows и производительности ПК,
-снижено потребление ОЗУ).
+* Improved the aggressive search mode algorithm: '--quick/-q' option in Snoop for Windows.
+(search acceleration ranges from 5% to 200% depending on the Windows version and PC performance,
+reduced RAM consumption).
 
-* В snoop full version добавлена новая опция: '--pool/-p': отключить автооптимизацию и задать вручную ускорение поиска
-(эта опция персональна и способна разогнать поиск в Snoop full version до высоких скоростей).
+* Added a new option in snoop full version: '--pool/-p': disable auto-optimization and manually set search acceleration
+(this option is personal and can accelerate the search in Snoop full version to high speeds).
 
-* В блок 'snoop info' опции '--version/-V' добавлен предварительно расчетный параметр. "Recommended pool".
+* Added a preliminary calculated parameter "Recommended pool" to the 'snoop info' block of the '--version/-V' option.
 
-* Исправлена дозапись "bad_username's" в файл "bad_nicknames.txt"
-(snoop мог иногда путаться откуда считывал невалидные username's из файла или CLI).
+* Fixed the appending of "bad_username's" to the "bad_nicknames.txt" file
+(snoop could sometimes get confused about where it read invalid username's from, from a file or CLI).
 
-* Обновлен формат дат в CLI/отчетах согласно международному стандарту ISO 8601
-(гггг-мм-дд).
+* Updated date format in CLI/reports according to the ISO 8601 international standard
+(yyyy-mm-dd).
 ===================================================================================
 
 *********
 *v1.4.0a*
 *********
-* (a) Расширены оповещения о Bad_raw. Документация Snoop Project оформлена и выложена под свободной GNU FDL лицензией.
-Обновлены реквизиты приёма платежей
-(Qiwi/PayPal в РФ больше не работают, убраны. Добавлен способ оплаты по СБП. Добавлена страница донатов CloudTips).
+* (a) Expanded Bad_raw notifications. Snoop Project documentation formatted and published under the free GNU FDL license.
+Updated payment receipt details
+(Qiwi/PayPal no longer work in the Russian Federation, removed. Added payment method via FPS. Added CloudTips donations page).
 
-* Расширена поисковая web-base Snoop ↑ 3700+ сайтов.
+* Expanded the Snoop web-base search to over 3700 websites.
 
-* Ускорен поиск в Snoop for GNU/Linux ~ на 140% т.е. почти в 2.5 раза!
-(при скорости интернет соединения не менее 12 Мбит/с поиск 'username', используя БД Snoop full версии, в quick-режиме
-'--quick/-q' длится менее 1-й минуты).
+* Accelerated search in Snoop for GNU/Linux by ~140%, i.e., almost 2.5 times!
+(with an internet connection speed of at least 12 Mbps, searching for a 'username' using the Snoop full version DB in quick mode
+'--quick/-q' takes less than 1 minute).
 
-* Ускорен запуск Snoop Project build version на старых ПК с OS Windows/HDD.
+* Accelerated launch of Snoop Project build version on old PCs with Windows OS/HDD.
 
-* Добавлен новый и умный алгоритм автоопределения явно не указанных/проблемных/перепутанных кодировок сайтов
-при поиске в различных режимах.
+* Added a new and smart algorithm for auto-detecting explicitly unspecified/problematic/confused site encodings
+when searching in various modes.
 
-* Добавлено больше информативности в CLI при поиске по сокращенной БД, используя опции фильтры:
+* Added more informativeness in the CLI when searching by reduced DB using filter options:
 '--site/-s' '--exclude/-e' '--include/-i'
-(кол-во веб сайтов при сужении поиска отображается в квадратных скобках справа от общего кол-ва сайтов БД).
+(the number of websites when narrowing search is displayed in square brackets to the right of total DB websites).
 
-* Изменен порог оповещения о Bad_raw: поднят c 2% до 2.5%.
+* Changed the threshold for Bad_raw notification: raised from 2% to 2.5%.
 
-* Форматирование. Улучшено стилизирование инфострок в CLI на небольших/сжатых по размеру терминалах, 
-например, в CLI Termux на Android: добавлены авто отступы строк с учетом пользовательского CLI-окружения.
-Переработан внешний вид премиальных предложений, которые действуют для всех пользователей Snoop full version.
+* Formatting. Improved styling of infostreams in the CLI on small/compressed terminals,
+for example, in CLI Termux on Android: added auto line indents taking into account the user CLI-environment.
+Reworked the appearance of premium offers valid for all Snoop full version users.
 
-* Обновлен HTML-репорт:
-  1) изменены стили кнопок;
-  2) добавлена подсветка, увеличение строки из списка websites при наведении курсора,
-двигаясь по списку при выборе ресурса сложно теперь промахнуться;
-  3) удалена дублирующая строка/тавтология о том, на скольких ресурсах найден 'username';
-  4) в Snoop demo version добавлена парочка упоминаний об использовании demo версий/просьба о пожертвовании
-на развитие проекта/full;
-  5) увеличена визуальная составляющая группировки флагов стран;
-  6) добавлено отображение title(s) саундтреков при наведении на них курсора.
+* Updated HTML report:
+  1) changed button styles;
+  2) added highlighting, zooming the web-list item row on hover,
+moving through the list when selecting a resource is now hard to miss;
+  3) removed duplicate string/tautology about how many resources the 'username' was found on;
+  4) added a couple of mentions in the Snoop demo version about using demo versions/requesting a donation
+for project development/full;
+  5) increased visual component of country flags grouping;
+  6) added displaying soundtrack titles on hover.
 
-* Исправлено автотестирование сети в режиме вербализации '--verbose/-v' в случае, когда тесты иногда проваливались
-из-за отказа некоторых серверов принимать соединение по незащищенному каналу.
+* Fixed network auto-testing in verbose mode '--verbose/-v' when tests sometimes failed
+due to some servers refusing to accept connection via unsecured channel.
 
-* Во всех версиях Snoop убран звук из CLI
-(звуковые оповещения об ошибках и об окончании поиска).
+* Removed sound from the CLI in all Snoop versions
+(sound notifications about errors and search completion).
 
-* К Snoop full version добавлены light сборки, позволяющие запукать ПО почти мгновенно.
+* Light builds added to Snoop full version, allowing software to launch almost instantly.
 
-* Android. Немного ускорен поиск в режиме вербализации.
+* Android. Slightly accelerated search in verbose mode.
 
-* Android. Если пользователь предпочитает открывать html-отчеты вручную и из своего GUI ФМ,
-то теперь подтягиваются и все стили.
+* Android. If a user prefers to open html reports manually and from their GUI FM,
+all styles are now also loaded.
 
-* Обновлены плагины 'GEO_IP/domain' и 'ReverseVgeocoder' до новых версий. Расширена визуализация данных
-в html-отчетах в Snoop full версиях, в частности добавлены:
-  1) чекбокс фильтрации данных по странам;
-  2) графики со статистикой по странам, регионам, объектам, провайдерам;
-  3) новый слой — топокарты, меняется по клику/свайпу;
-  4) режим переключения в полный экран;
-  5) авто отображение координат в любой точке на карте;
-  6) масштаб линейки;
-  7) памятка, отображающая статистику по InvalidData;
+* Updated 'GEO_IP/domain' and 'ReverseVgeocoder' plugins to new versions. Expanded data visualization
+in html reports in Snoop full versions, specifically added:
+  1) checkbox for filtering data by countries;
+  2) graphs with statistics by countries, regions, objects, providers;
+  3) a new layer — topomaps, changes by click/swipe;
+  4) full screen toggle mode;
+  5) auto coordinate display at any point on the map;
+  6) ruler scale;
+  7) a memo displaying statistics on InvalidData;
   8) copyright;
-  9) поиск;
-  10) в плагине 'ReverseVgeocoder' увеличен масштаб покрытия/точности от 10-100 раз по округам/объектам
-в RU; EU и CIS локациях.
+  9) search;
+  10) in the 'ReverseVgeocoder' plugin, coverage scale/accuracy was increased by 10-100 times by okrugs/objects
+in RU, EU, and CIS locations.
 
-! Для того чтобы воспользоваться всеми обновлениями, если ранее пользователь уже пользовался старыми сборками Snoop,
-то нужно сбросить кэш (разовая операция):  
-$ snoop_cli --autoclean  
-если пользователь предпочитал использовать Snoop в исходной форме, обновить библиотеки:  
-$ cd ~/snoop && python3 -m pip install -r requirements_android.txt  #Android;  
+! To take advantage of all updates, if the user previously used old Snoop builds,
+they need to clear the cache (one-time operation):
+$ snoop_cli --autoclean
+if the user preferred to use Snoop in source form, update the libraries:
+$ cd ~/snoop && python3 -m pip install -r requirements_android.txt  #Android;
 $ cd ~/snoop && python3 -m pip install -r requirements.txt  #Desktop.
 ===================================================================================
 
 ********
 *v1.3.9*
 ********
-* Расширена поисковая web-base Snoop ↑ 3500 сайтов.
+* Expanded the Snoop web-base search to over 3500 websites.
 
-* Исправлена утечка памяти, которая затрагивала пользователей Snoop version for Windows.
+* Fixed a memory leak affecting Snoop version for Windows users.
 
-* Исправлено падение Snoop при сохранении отчетов с опцией '--save-page/-S' в крайне-редких случаях
-(например, если сайты намеренно вредили парсингу или в своём исходном коде содержали неподдерживаемые символы
-в заявленной кодировке. За отчёт спасибо подписчику из Сербии, ранее он уже присылал информацию по найденным багам).
+* Fixed Snoop crashing when saving reports with '--save-page/-S' option in extremely rare cases
+(e.g., if websites deliberately harmed parsing or their source code contained unsupported characters
+in the declared encoding. Thanks to a subscriber from Serbia for the report, who previously sent info on found bugs).
 
-* В режим вербализации опция '--verbose/-v' добавлена новая метрика: отслеживания доступной/потребляемой памяти RAM.
+* Added a new metric to verbose mode option '--verbose/-v': tracking available/consumed RAM memory.
 
-* Ускорен вывод на печать сайтов из "dynamic gray list" и недопустимые/кириллица "nickname(s)" на определенных сайтах
-(оптимизация актуальна для пользователей Snoop for Windows full версий).
+* Sped up the printing of sites from the "dynamic gray list" and invalid/Cyrillic "nickname(s)" on certain sites
+(optimization is relevant for Snoop for Windows full version users).
 
-* В ПО Snoop Project добавлена пасхалка, связанная с поиском особых nickname(s).
+* Added an easter egg to Snoop Project software related to searching for special nickname(s).
 
-* Спрятаны редко-используемые опции из help-a: '--cert/-C' и 'Headers/-H' чтобы не загромождать справку
-(опции продолжают работать если их задействовать, описание ключей осталось в документации и readme).
+* Hid rarely used options from help: '--cert/-C' and 'Headers/-H' so as not to clutter the help
+(options continue to work if invoked, key description remains in documentation and readme).
 
-* Во все отчёты добавлен "copyright".
+* Added "copyright" to all reports.
 
-* Слиты ветки "snoop_termux" и "master", немного изменилась инструкция по установке Snoop на Android/Termux
-(код синхронизирован, экономия дискового пространства и упрощение дальнейшей разработки/поддержки кодовой базы.
-Для получения обновлений из "source code" пользователи Snoop for OS Android/Termux должны сделать
-"git checkout master" или "git clone" по-новому).
+* Merged branches "snoop_termux" and "master", slightly changed instructions for installing Snoop on Android/Termux
+(code synchronized, saving disk space and simplifying further development/maintenance of the codebase.
+To get updates from "source code", Snoop for OS Android/Termux users must do
+"git checkout master" or "git clone" anew).
 
-* Объединены флаги государств Kb/WR
-(WR — означает весь мир. Kb — ранее означало "киберпанки", обычно это форумы где общение проходит на EN-языке,
-но в условиях использования или политике конфиденциальности/обратной связи не указана локация).
+* Merged country flags Kb/WR
+(WR — means whole world. Kb — previously meant "cyberpunks", usually these are forums where communication takes place in EN-language,
+but the terms of use or privacy policy/feedback do not indicate a location).
 
-* Обновлена документация.
+* Updated documentation.
 
-* Мелкие визуальные улучшения.
+* Minor visual improvements.
 ===================================================================================
 
 ********
 *v1.3.8*
 ********
-* Расширена поисковая web-base Snoop ↑ 3000+ сайтов.
+* Expanded the Snoop web-base search to over 3000 websites.
 
-* Исправлены баги в редких случаях:
-  1) поиск nickname с опцией сохранения отчетов 'snoop_cli -S username', если при поиске на "плохом" ресурсе
-username найдено, но на сервере указана несуществующая кодировка или кодировка с опечаткой, то при сохранении
-страницы она ломала автоопределение кодировки в snoop;
-  2) при поиске nickname мультипроцессинг на Snoop for GNU/Linux full версии мог и крашился
-(почти невозможно было воспроизвести проблему, спасибо за отчёты подписчику Snoop full версии из Сербии).
+* Fixed bugs in rare cases:
+  1) searching nickname with the option to save reports 'snoop_cli -S username', if searching on a "bad" resource
+username found, but the server specifies a non-existent encoding or encoding with a typo, then when saving
+the page broke auto-detect encoding in snoop;
+  2) when searching for nickname, multiprocessing on Snoop for GNU/Linux full version could and did crash
+(it was almost impossible to reproduce the problem, thanks to a Snoop full version subscriber from Serbia for the reports).
 
-* Расширен шаблон запрещённых символов при поиске nickname, например, китайский алфавит и др.
-символы, отличные от латиницы, кириллицы, цифр, некоторых спец.символов — теперь недозволен.
+* Expanded the template for prohibited characters when searching for a nickname, e.g., the Chinese alphabet and other
+characters different from Latin, Cyrillic, numbers, certain special characters — are now disallowed.
 
-* При использовании опции 'userlist/-u' (загрузка nickname(s) из файла) в cli-отчёт добавлена промежуточная таблица:
-short nickname(s). Так же файл 'bad_nicknames.txt' обновляется если не только в CLI были введены 'неправильные'
-nickname, но и выгружены из файла: формат 'bad_nicknames.txt' выглядит следующим образом::
-дата/время/неправильный nickname из файла/или из CLI/bad_username.
+* When using the 'userlist/-u' option (loading nickname(s) from file) an intermediate table is added to the cli report:
+short nickname(s). Also the 'bad_nicknames.txt' file updates if 'incorrect' nicknames were entered
+not only in CLI but also unloaded from file: 'bad_nicknames.txt' format looks as follows::
+date/time/incorrect nickname from file/or from CLI/bad_username.
 
-* Яндекс присоединился к интернет-цензуре и теперь письма с его домена не отправляются в международную почтовую службу
-'protonmail', для пользователей зарегистрированных в 'яндекс/mailru', которые ранее не могли связаться с разработчиком
-по email, в оферту и документацию Snoop добавлена дополнительная нецензурируемая почта для запросов и предложений.
+* Yandex joined internet censorship and now emails from its domain are not sent to the international postal service
+'protonmail', for users registered in 'yandex/mailru' who previously could not contact the developer
+via email, an additional uncensored email for inquiries and suggestions is added to the Snoop offer and documentation.
 
-* Изменены условия предоставления Snoop full версии для студентов: скидка на ПО составляет теперь 50%,
-ранее подписка стоила 0р, также обновлены реквизиты сберкарты.
+* Changed terms of provision for Snoop full version for students: software discount is now 50%,
+previously subscription cost 0 rub., also Sberbank card details updated.
 
-* Добавлены Readme на Испанском; Китайском; Французском и Немецком языках.
+* Added Readme in Spanish, Chinese, French, and German.
 ===================================================================================
 
 ********
 *v1.3.7*
 ********
-* Расширена поисковая web-base Snoop до 2700 сайтов.
+* Expanded the Snoop web-base search to 2700 websites.
 
-* Android. Ускорен поиск snoop на Termux ~ на 200%
-(требуется обновление Termux и обновление Python до версии 3.11, либо установка пропатченного python 3.7-3.10 из
-tur-repo, в крайнем случае сохранена обратная совместимость и небыстрый поиск).
+* Android. Accelerated snoop search on Termux by ~200%
+(requires Termux update and Python update to version 3.11, or installation of patched python 3.7-3.10 from
+tur-repo, in extreme case backward compatibility and non-fast search is preserved).
 
-* Android. [Из-за специфичной локали в Termux] если пользователь ищет ник, например, на кириллице,
-то лишь в html результатах ник будет переименован, как 'nickname_ч_м_г_время', мера необходима для корректного
-автооткрытия результатов поиска в вэб-браузере, txt/csv отчёты не затронуты.
+* Android. [Due to specific locale in Termux] if user searches for a nickname, e.g., in Cyrillic,
+only in html results the nickname will be renamed as 'nickname_h_m_y_time', a measure necessary for correct
+autoplay search results in web browser, txt/csv reports unaffected.
 
-* Переработана и улучшена интеллектуальная логика поиска. Snoop в большинстве случаев не делает повторные запросы
-на зацензурированные ресурсы внешней стороной или внутренним регулятором
-(экономия времени при поиске, в противном случае, ресурсы были бы потрачены впустую, актуально в Full-версиях).
+* Reworked and improved intelligent search logic. Snoop in most cases does not make repeat requests
+to resources censored by external party or internal regulator
+(saving search time, otherwise, resources would be wasted, relevant in Full versions).
 
-* Улучшено детектирование трёх групп сайтов:
-  1. исключаются ошибки ложного сраб. при поиске, если проблемы с серверами или они на ТО, затрагивает ~50% БД snoop;
-  2. больше результатов при поиске на сайтах, которые давно заброшены или имеют проблемы с безопасностью;
-  3. расширен формат БД Snoop для манипуляций с редкими проблемными кодировками/сайтами, например, когда сервер
-возвращает/не возвращает одну кодировку, а в тегах присутствует другая.
+* Improved detection of three groups of sites:
+  1. false positives are excluded when searching, if problems with servers or they are on maintenance, affects ~50% of Snoop DB;
+  2. more results when searching on sites that have long been abandoned or have security issues;
+  3. expanded Snoop DB format for operations with rare problematic encodings/sites, e.g., when the server
+returns/does not return one encoding, but tags contain another.
 
-* Исправлен подсчёт % Bad_raw при любых манипуляциях с БД Snoop, а также учитываются сайты из Dynamic gray_list
-(дефолтная локальная БД; скачанная БД; синхронизированная онлайн БД; сокращённые БД с ключами '-s', '-i', '-e').
+* Fixed the % Bad_raw calculation for any operations with Snoop DB, also taking into account sites from Dynamic gray_list
+(default local DB; downloaded DB; synchronized online DB; reduced DBs with keys '-s', '-i', '-e').
 
-* Добавлена проверка опечаток: nickname не может быть короче 3-х символов
-(если пользователь опечатался, например, при наборе ключа '-s': "$ snoop_cli - s ebay username", поведение ранее
-вызвало бы поиск сразу чётырёх nickname(s) по всей БД snoop:: '-', 's', 'ebay' , 'username' вместо поиска
-одного username на одном указанном ресурсе — ebay.com).
+* Added typo check: nickname cannot be shorter than 3 characters
+(if the user made a typo, for example when typing key '-s': "$ snoop_cli - s ebay username", behavior previously
+would invoke a search of exactly four nickname(s) across the entire snoop DB:: '-', 's', 'ebay', 'username' instead of searching
+one username on one specified resource — ebay.com).
 
-* Добавлена новая опция поиска: режим '--quick/-q', которая ускоряет общий поиск
-(подробнее о новом режиме поиска в '--help/-h', quick-режим актуален для Full-версий, при слабых мощностях, OS Windows).
+* Added a new search option: mode '--quick/-q', which speeds up the general search
+(more details about the new search mode in '--help/-h', quick mode is relevant for Full versions, on weak capacities, Windows OS).
 
-* Переработана кодовая база некоторых частей ПО, в проекте стало меньше сторонних lib-зависимостей.
+* Reworked the codebase of some parts of the software, the project has fewer third-party lib dependencies.
 
-* Косметические изменения в ПО
-(удалена опция 'Normal'; переименована опция "one-level" в "include"; опция удаления отчетов теперь выводит баннер и
-запрашивает подтверждение на удаление; логгирование low/high ошибок стало более информативным;
-расширен блок snoop-info; при поиске nickname и получения ошибок в CLI, связанных с Internet Censorship/ssl,
-справа от ресурса появляется буквенный код страны, например, если у пользователей из РФ-локации очень часто возникают
-ошибки на UA-ресурсах, это значит, что "слон в комнате"; поддержать проект теперь можно и с помощью QIWI;
-поправлены print-опечатки и смысловые конструкции).
+* Cosmetic changes to the software
+(removed 'Normal' option; 'one-level' option renamed to 'include'; report deletion option now outputs a banner and
+prompts confirmation for deletion; logging low/high errors is more informative;
+expanded the snoop-info block; when searching for nickname and getting errors in CLI related to Internet Censorship/ssl,
+the country code appears to the right of the resource, for example, if users from RU location very often encounter
+errors on UA resources, it means "the elephant in the room"; project support is now possible via QIWI;
+fixed print typos and semantic structures).
 ===================================================================================
 
 ********
 *v1.3.6*
 ********
-* Обновлен плагин GEO_IP/domain. При несуществующей или ненайденной цели ПО автоматически прерывает программу
-(на некоторых версиях Android Snoop мог неожиданно подвисать на ~минуту. Обновлён прядильщик: вращающаяся планета).
+* Updated the GEO_IP/domain plugin. If the target is non-existent or not found, the software automatically interrupts the program
+(on some Android versions Snoop could unexpectedly hang for ~a minute. Updated spinner: a rotating planet).
 
-* Значение опции "-t" timeout по умолчанию при поиске "nickname" поднято до 9 сек.
-(прошлое значение = 5 сек. Причина: увеличение БД snoop demo).
+* The default value of the "-t" timeout option when searching for "nickname" raised to 9 sec.
+(previous value = 5 sec. Reason: snoop demo DB increase).
 
-* При поиске "nickname" добавлены повторные соединения на сбойные ресурсы
-(при некоторых неудачных попытках коннекта отправляются повторные запросы,
-частичный функционал перешёл из Full версий).
+* When searching for "nickname", retries added for connection failures on problematic resources
+(on some unsuccessful connection attempts, request retries are sent,
+partial functionality ported from Full versions).
 
-* Комбинация клавиш: "ctrl + c" — теперь одинаково хорошо прерывает работу ПО во всех версиях Snoop и на разных OS.
+* Key combination: "ctrl + c" — now equally well interrupts software execution in all Snoop versions and on different OS.
 
-* Поиск "nickname" на Snoop for GNU/Linux в demo стал быстрее по сравнению с поиском Snoop for Windows demo
-(частичная функциональность перешла из Full версий).
+* Searching for "nickname" on Snoop for GNU/Linux in demo became faster compared to searching on Snoop for Windows demo
+(partial functionality ported from Full versions).
 
-* Опция "-С" сделала реверс на Snoop for Android.
-(при поиске "nickname" проверка сертификатов по умолчанию отключена теперь везде в т.ч. и на OS Android,
-эффект — меньше ошибок на проблемных сайтах. Пример воспроизведения проблемы с "плохим сайтом":
+* The "-C" option reversed on Snoop for Android.
+(when searching for "nickname" checking certificates is now disabled by default everywhere including Android OS,
+effect — fewer errors on problematic sites. Example reproduction of problem with "bad site":
 $ snoop_cli -s forumkinopoisk nickname123321 -C
-в ранних версиях Python отключение "проверки сертификатов" лишь на Snoop for Android вызывало замедление поиска).
+in early Python versions disabling "certificate check" only on Snoop for Android caused search slowdown).
 
-* Спрятана опция '--base/-b'
-(самая редко-используемая опция спрятана для того, чтобы не загромождать "help").
+* Hid the '--base/-b' option
+(the least frequently used option hidden so as not to clutter the "help").
 
-* Блок snoop-info, опция "snoop -V" подсвечивает параметр RAM, когда программы на ПК/смартфоне захватили "всю" память
-(если Snoop считает, что для нормальной работы ему недостаточно ОЗУ, на разных OS эти значения неравны,
-то подсвечивает доступную RAM в OS красным цветом).
+* The snoop-info block, "snoop -V" option highlights the RAM parameter when PC/smartphone programs have captured "all" memory
+(if Snoop considers there is not enough RAM for normal operation, on different OS these values are unequal,
+it highlights the available RAM in OS in red).
 
-* Незначительные косметические изменения.
+* Minor cosmetic changes.
 
-* Обновлена документация: 'Общее руководство Snoop Project.pdf'.
+* Updated documentation: 'General Guide Snoop Project.pdf'.
 ===================================================================================
 
 ********
 *v1.3.5*
 ********
-* Обновлён плагин GEO_IP/domain. Старый метод проверки ip/доменов сломался и был заменён на три новых.
-В случае неисправности одного метода подхватывается следующий. В логике обновлены проверки и добавлен прядильщик.
+* Updated the GEO_IP/domain plugin. The old method of checking ip/domains broke and was replaced with three new ones.
+In case of failure of one method, the next one is picked up. Checks updated in the logic and a spinner added.
 
-* В build-версиях обновлены некоторые библиотеки, могут выявиться неожиданности (см snoop_cli -V).
+* In build versions, some libraries updated, surprises may appear (see snoop_cli -V).
 
-* Build-версии 'snoop' переименованы в 'snoop_cli'
-(для тех пользователей, кто не читал документацию и пытался запускать 'snoop' из домашнего каталога в GNU/Linux).
+* Build versions 'snoop' renamed to 'snoop_cli'
+(for users who didn't read the documentation and tried to run 'snoop' from home directory in GNU/Linux).
 
-* Сокращено время на установку Snoop на Android (Termux) в несколько раз.
+* Reduced installation time for Snoop on Android (Termux) by several times.
 ===================================================================================
 
 ********
 *v1.3.4*
 ********
-* Расширена поисковая web-base Snoop > 2600+ сайтов, 54% из которых в ru-зоне.
+* Expanded the Snoop web-base search > 2600+ websites, 54% of which are in the ru-zone.
 
-* Динамические временно-отключённые веб сайты из "Graylist" отображаются теперь в файле "Websites.md": метки (g. l.).
+* Dynamic temporarily disabled websites from "Graylist" now displayed in "Websites.md": marks (g. l.).
 
-* Aвтооткрытие результатов во внешнем веб браузере налажено на всех версиях Android без правок конфига
-(детектирование дистрибутивов Android ("snoop -V -> snoop info" и автооткрытие результатов поиска в "HTML Viewer").
+* Auto-opening of results in an external web browser fixed on all Android versions without config edits
+(detection of Android distros ("snoop -V -> snoop info" and auto-opening of search results in "HTML Viewer").
 
-* Исправление для создания табличных csv-отчётов на OS Windows для локалей/кодировок отличных от RU (issues/61).
+* Fix for creating tabular csv reports on Windows OS for locales/encodings other than RU (issues/61).
 
-* Обновлены плагины Reverse Vgeocoder & GEO_IP/domain: всплывающие окна маркеров стали более информативными
-(full-версии).
+* Updated Reverse Vgeocoder & GEO_IP/domain plugins: marker popups became more informative
+(full versions).
 
-* Удалены и больше не поддерживаются английские snoop build версии
+* Removed and no longer supported English snoop build versions
 (removed and no longer supported English snoop build versions).
 
-* Мелкие исправления.
+* Minor fixes.
 ===================================================================================
 
 ********
 *v1.3.3*
 ********
-* Добавлены в архивы видео-подсказки по быстрому запуску snoop для пользователей новичков, которые не работали с CLI
+* Added video tutorials in archives for quick snoop launch for beginner users who haven't worked with CLI
 (issues/48).
 
-* Добавлен txt-отчет: файл 'bad_nicknames.txt' в который записываются пропущенные дата/nickname(s)
-(недопустимые ники/телефоны/некоторые_спецсимволы, обновляя файл в режиме дозаписи при поиске, например с опцией '-u'.
+* Added txt report: 'bad_nicknames.txt' file where skipped date/nickname(s) are recorded
+(invalid nicknames/phones/certain_special_characters, updating the file in append mode during search, e.g. with the '-u' option.
 
-* Добавлен режим корректного останова ПО с высвобождением ресурсов для разных версий/платформ Snoop Project (ctrl+c).
+* Added a mode for gracefully stopping the software with resource release for different versions/platforms of Snoop Project (ctrl+c).
 
-* Добавлена новая опция '--headers/-H': задать вручную пользовательский user-agent.
-По умолчанию на каждый сайт создается рандомный, но реальный юзерагент или выбирается/переопределяется из БД Snoop
-с расширенным заголовком для обхода некоторых 'защит CF'.
+* Added a new option '--headers/-H': manually set a custom user-agent.
+By default, a random but real user-agent is generated for each site or selected/overridden from the Snoop DB
+with an expanded header to bypass some 'CF protections'.
 
-* Добавлена snoop-заставка и некоторые эмодзи, когда nickname(s) для поиска не заданы или выбраны
-противоречивые параметры в аргументах CLI
-(исключение: snoop for Windows OS — старая CLI OS Windows 7).
+* Added a snoop splash screen and some emojis when nickname(s) for search are not specified or contradictory parameters
+are chosen in the CLI arguments
+(exception: snoop for Windows OS — old CLI OS Windows 7).
 
-* Добавлены различные инфо-панели: отображение БД '--list-all/-l'; режим verbose; новый блок 'snoop-info'
-с опцией '--version/-V'; с опцией '--userlist/-u' разделение на группы nickname(s):
-валидные/невалидные/дубликаты; в CLI Yandex_parser-a (full-версии).
+* Added various info panels: DB display '--list-all/-l'; verbose mode; new 'snoop-info' block
+with '--version/-V' option; with '--userlist/-u' option division into nickname(s) groups:
+valid/invalid/duplicates; in Yandex_parser CLI (full versions).
 
-* Обновлён режим поиска с опцией '--userlist/-u' расширен алгоритм детектирования nickname(s)/email
-(просто попробуйте его использовать снова).
+* Updated search mode with '--userlist/-u' option expanded algorithm for detecting nickname(s)/email
+(just try to use it again).
 
-* Ускорен вывод БД в CLI для методов опции '--list-all/-l' [1/2].
+* Accelerated DB output in CLI for '--list-all/-l' option methods [1/2].
 
-* Для Snoop for Termux (Android) добавлено авто-открытие результатов поиска во внешнем браузере
-без перекрытия результатов в CLI
-(по желанию пользователя открытие результатов во внешнем веб-браузере можно проигнорировать).
+* For Snoop for Termux (Android) added auto-opening of search results in external browser
+without overlapping results in CLI
+(at user's explicit request, opening results in an external web browser can be ignored).
 
-* Обновлен внешний вид вывод результатов в CLI при поиске nickname(s). Обновлен вывод лицензии в стиле Windows XP. 
-Обновлен прогресс (ранее прогресс обновлялся по мере поступления данных и из-за этого казалось, что ПО подвисает в
-full-версиях). Прогресс обновляется несколько раз/сек. или по мере поступления данных в режиме вербализации.
+* Updated UI for search results in CLI when searching nickname(s). Updated license output in Windows XP style. 
+Updated progress (previously progress updated as data arrived, making software appear to hang in full versions).
+Progress updates several times/sec. or as data arrives in verbose mode.
 
-* В html-отчеты добавлена новая кнопка 'Doc', ведущая на документацию 'Общее руководство Snoop Project.pdf'/онлайн.
+* In html reports added a new 'Doc' button leading to documentation 'General Guide Snoop Project.pdf'/online.
 
-* В txt-отчеты также, как и в html/csv-отчеты добавлен параметр 'сессия'.
+* In txt reports, just like in html/csv reports, added 'session' parameter.
 
-* Обновлены все опции Snoop Project ближе к POSIX (см snoop --help).
-Старый вариант использования аргументов в CLI с подтверждением [y] обратно совместим.
+* Updated all Snoop Project options closer to POSIX (see snoop --help).
+Old variant of using arguments in CLI with confirmation [y] is backward compatible.
 
-* Обновлён Yandex_parser до v0.5: убрано сервис Я.коллекции (ресурс неактивен).
-Добавлен Я.аватар: login-a/email. В многопользовательский режим в txt/cli/tml-отчёты добавлены/обновлены метрики:
-'валидные_логины/незареганные_пользователи/необработанные_данные/дубликаты', метки логинов.
+* Updated Yandex_parser to v0.5: removed Y.Collections service (resource inactive).
+Added Y.Avatar: login/email. In multi-user mode in txt/cli/html reports added/updated metrics:
+'valid_logins/unregistered_users/unprocessed_data/duplicates', login labels.
 
-* Подкаталоги сохраненных отчетов/результатов группируются: plugin(s) в один каталог, nickname(s) в другой.
+* Subdirectories for saved reports/results are grouped: plugin(s) in one directory, nickname(s) in another.
 
-* Исправлен корректный выход из ПО при попытке протестировать сеть при её отсутствии/сбое с опцией '-v'.
+* Fixed graceful software exit when trying to test network during absence/failure with '-v' option.
 
-* Исправлено в CLI: индив.сессия/трафик/время при поиске в одной сессии нескольких имен
-с опцией '-u' и/или с опцией '-v'.
+* Fixed in CLI: indiv.session/traffic/time when searching multiple names in one session
+with '-u' option and/or '-v' option.
 
-* Исправлено в csv-отчетах: время отклика сайта разделяется 'верным дробным знаком'::
-точка или запятая с учетом локали пользователя (т.е. число в таблице всегда цифра независимо от дробного знака,
-что прямо влияет на сортировку результатов по параметру).
-Данные ниже 1 Кб округляются точнее, свыше 1 Кб без дробной части. Общее время (было в мс., теперь в сек.сот).
-При сохранении отчетов с опцией '-S' или в обычном режиме для сайтов,
-использующих специфичный метод детектирования nickname(s):
-(username.salt) теперь также подсчитывается размер данных сессии.
+* Fixed in csv reports: site response time is separated by 'correct fractional sign'::
+dot or comma based on user locale (i.e. the number in table is always a digit regardless of fractional sign,
+which directly affects result sorting by parameter).
+Data below 1 KB rounded more accurately, above 1 KB without fractional part. Total time (was in ms, now in sec.hundredths).
+When saving reports with '-S' option or in regular mode for sites
+using specific method for detecting nickname(s):
+(username.salt) the session data size is now also calculated.
 
-* Миграция build-версий Snoop Project с python3.7 на python3.8 (кроме EN-версий).
+* Migration of Snoop Project build versions from python3.7 to python3.8 (except EN versions).
 ===================================================================================
 
 ********
 *v1.3.2*
 ********
-* Расширен формат БД: добавлен параметр "grey_list" динамические сайты временно отключенные.
-(в csv-отчеты записываются статусы о временно отключённых сайтах, 
-с опцией '--verbose/-v' информация о сайтах из grey_list отображается и в CLI).
+* Expanded DB format: added "grey_list" parameter for temporarily disabled dynamic sites.
+(status of temporarily disabled sites is written to csv reports, 
+with '--verbose/-v' option, info about sites from grey_list is also displayed in CLI).
 
-* Для Snoop build-версий добавлен прядильщик при синхронизации локальной и удаленной БД
-(при синхронизации/обновлении БД всплывает временно анимированное сообщение: 'синхронизация с БД онлайн').
+* For Snoop build versions added a spinner during sync of local and remote DB
+(during DB sync/update a temporarily animated message pops up: 'synchronizing with online DB').
 
-* По просьбе донатера обновлена опция отображение детальной информации о БД snoop: '--list all' до сокращения '-l y'.
+* At the request of a donator, updated the '--list all' option displaying detailed info about snoop DB to abbreviation '-l y'.
 
-* Добавлена новая опция '--exclude/-e' исключить из поиска выбранные регионы, например, '-e WR' — исключить мир
-(допустимо использовать опцию несколько раз '-e ru -e us'. Опция регистронезависимая, информация о флаге страны
-отображается в cli и записывается во все отчеты. Несуществующие, выбранные регионы подсвечены в CLI красным цветом).
+* Added a new option '--exclude/-e' to exclude selected regions from search, e.g. '-e WR' — exclude world
+(can use option multiple times '-e ru -e us'. Option is case-insensitive, country flag info
+is displayed in cli and written to all reports. Non-existent, selected regions highlighted in red in CLI).
 
-* Добавлена опция '--one-level/-o', включить для поиска конкретные регионы
-(допустимо использовать опцию несколько раз, например, поиск только по Украинским и Белорусским сайтам '-o UA -o BY'.
-Опция — регистронезависимая, информация о флаге страны также добавляется в cli и во все отчеты, 
-несуществующие, выбранные регионы подсвечены в CLI красным цветом).
+* Added '--one-level/-o' option, include specific regions for search
+(can use option multiple times, e.g. search only on Ukrainian and Belarusian sites '-o UA -o BY'.
+Option — case-insensitive, country flag info also added to cli and all reports, 
+non-existent, selected regions highlighted in red in CLI).
 
-* Опция '--site/-s' выводит теперь и сообщения, если желаемый для поиска сайт замечен в БД full-версии,
-но отсутствует в БД Demo-версии.
+* The '--site/-s' option now also outputs messages if the desired search site is seen in Full version DB,
+but missing from Demo version DB.
 
-* Поправлены права на документацию в архивах: 'Общее руководство Snoop Project.pdf'.
-(с 755 на 644).
+* Fixed permissions for documentation in archives: 'General Guide Snoop Project.pdf'.
+(from 755 to 644).
 
-* Обновлена справка в ПО 'snoop --help'.
+* Updated help in software 'snoop --help'.
 
-* Мелкие и незначительные улучшения в кодовой базе.
+* Minor and insignificant improvements in codebase.
 ===================================================================================
 
 ************
 *v1.3.1 (A)*
 ************
-* Расширена поисковая web-base Snoop > 2200+ сайтов.
+* Expanded the Snoop web-base search > 2200+ websites.
 
-* Добавлено в html/csv-отчёты и в CLI параметр: 'сессия':: обработанные данные трафика (ungzip)
-в целом и персонально для каждого сайта
-(с опцией '-v' визуально в CLI; новый столбец 'Сессия/Kb' в csv-отчёте; 'сессия' в html-отчёте).
+* Added to html/csv reports and CLI parameter: 'session':: processed traffic data (ungzip)
+overall and individually for each site
+(with '-v' option visually in CLI; new 'Session/Kb' column in csv report; 'session' in html report).
 
-* При превышении стандартных параметров Internet Censorship
-в общий вывод-CLI добавлена информация о пропуске: err БД в '%'.
+* When exceeding standard Internet Censorship parameters
+in general CLI output added info on omissions: err DB in '%'.
 
-* Обновлён плагин Yandex_parser до v0.4 
-(пропуск обработки данных несуществующих username в БД Яндекса).
+* Updated Yandex_parser plugin to v0.4 
+(skips data processing for non-existent usernames in Yandex DB).
 
-* Изменены пути записи отчётов для Snoop for Windows (issues/49).
+* Changed report write paths for Snoop for Windows (issues/49).
 
-* Обновлены права Snoop for GNU/Linux build-версий с 744 на 644 (issues/50).
+* Updated permissions for Snoop for GNU/Linux build versions from 744 to 644 (issues/50).
 
-* Изменена utf-8 кодировка csv-отчётов на автоматический выбор кодировки (для OS Windows: 1251).
+* Changed utf-8 encoding of csv reports to automatic encoding selection (for Windows OS: 1251).
 
-* В аргументах CLI обновлён ключ: '--update y' до сокращения '-U y'.
+* In CLI arguments updated key: '--update y' to abbreviation '-U y'.
 
-* Вывод информации о БД Snoop опции '--list all' и в файле websites.md сортируются без учёта регистра.
+* Snoop DB info output of '--list all' option and in websites.md file sorted case-insensitively.
 
 * Add Readme.en.
 
-* Продлена лицензия необновляемой Snoop EN-версии на год.
+* Extended license for non-updatable Snoop EN version for a year.
 
-* Обновлена документация: 'Общее руководство Snoop Project.pdf'
+* Updated documentation: 'General Guide Snoop Project.pdf'
 
-* Мелкие и незначительные улучшения в CLI.
+* Minor and insignificant improvements in CLI.
 ===================================================================================
 
 ********
 *v1.3.0*
 ********
-* Расширена поисковая web-base Snoop > 2000+ сайтов.
+* Expanded the Snoop web-base search > 2000+ websites.
 
-* Обновлено меню справки, аргументы сгруппированы по смыслу.
+* Updated help menu, arguments grouped by meaning.
 
-* Добавлена новая опция '--autoclean/-a': автоудаление накопленных отчетов.
+* Added new option '--autoclean/-a': auto-delete accumulated reports.
 
-* Обновлена функция самодиагностики сети.
+* Updated network self-diagnostics function.
 
-* Для Snoop Full версий добавлены премиальные предложения по окончанию действия лицензии.
+* Added premium offers for Snoop Full versions upon license expiration.
 
-* Обновлено отображение в отчетах локальной или web БД с учетом выбора БД при поиске.
+* Updated display in reports for local or web DB depending on DB chosen during search.
 ===================================================================================
 
 ********
 *v1.2.9*
 ********
-* Переработан и обновлён информативный вывод, Snoop стал выглядеть еще более презентабельнее.
-(Изменённый внешний вид (особенно/теперь) будет заметен у пользователей Snoop for Windows,
-многие вещи будут автоматически подгоняться под размеры консоли для всех OS).
+* Reworked and updated informative output, Snoop began looking even more presentable.
+(Changed appearance (especially/now) will be noticeable by Snoop for Windows users,
+many things will automatically adjust to console size for all OS).
 
-* К прогрессу добавлены параметры: прядильщик и истёкшее время.
+* Added parameters to progress: spinner and elapsed time.
 
-* По просьбе донатера обновлена опция '-f': 'вывод на печать только найденных аккаунтов'
-(ранее опция '-f' выводила найденные аккаунты и оповещения капчи/err, служебные и 
-пользовательские оповещения в этом режиме теперь подавляются).
+* At the request of a donator, updated option '-f': 'print only found accounts'
+(previously option '-f' printed found accounts and captcha/err notifications, service and 
+user notifications in this mode are now suppressed).
 
-* Обновлена опция '-v' - подробная вербализация
-(вывод стал более читабельным).
+* Updated '-v' option - detailed verbose
+(output became more readable).
 
-* Все плагины Snoop обновлены до следующих версий
-(исправлены некоторые ошибки, связанные со специфичными путями и спецсимволами,
-убран 'Я Район' из плагина 'Yandex_parser' по причине закрытия сервиса. В плагине GEO_IP/domain
-добавлен режим 'Offline_тихий поиск', в таблицы добавлена сортировка по значениям).
+* All Snoop plugins updated to following versions
+(fixed some errors related to specific paths and special characters,
+removed 'Ya Region' from 'Yandex_parser' plugin due to service closure. In GEO_IP/domain plugin
+added 'Offline_quiet search' mode, sorting by values added to tables).
 
-Изменения коснулись всех версий Snoop 6 из 10 программ (Snoop for Termux/Source;
-Windows/Linux/Demo/Full/RU/Build) кроме EN версий. Дальнейшая поддержка и развитие EN версий
-прекращено (Последние версии Snoop/EN/Build v1.2.8).
+Changes affected all Snoop versions 6 out of 10 programs (Snoop for Termux/Source;
+Windows/Linux/Demo/Full/RU/Build) except EN versions. Further maintenance and development of EN versions
+ceased (Latest Snoop/EN/Build versions v1.2.8).
 ===================================================================================
 
 ********
 *v1.2.8*
 ********
-* Ускорен поиск по 'username' ~ на 100% для Snoop for Termux.
+* Accelerated search by 'username' by ~100% for Snoop for Termux.
 
-* Расширена поисковая web-base Snoop > 1500+ сайтов.
+* Expanded the Snoop web-base search > 1500+ websites.
 ===================================================================================
 
 ********
 *v1.2.7*
 ********
-* Обновлён плагин Reverse Vgeocoder до v0.2
-(добавлен метод геокодирования: 'Подробный'. В данный метод включено:
-все маркеры подписаны геометками; странами; округами и городами. 
-Добавлены статистические отчёты {с расширенной геоинформацией, а также расчётом
-количественной информацией процентного соотношения}, которые сохраняются с
-подробностями в [txt.html.csv] форматах. Добавлены: статус-бар; процент выполнения 
-геокодирования. Подробнее о плагине в справке или документации).
+* Updated Reverse Vgeocoder plugin to v0.2
+(added geocoding method: 'Detailed'. This method includes:
+all markers labeled with geotags; countries; okrugs and cities. 
+Added statistical reports {with extended geoinfo, as well as quantitative calculation 
+of percentage ratio}, which are saved with details in [txt.html.csv] formats.
+Added: status bar; geocoding completion percentage. More details about plugin in help or documentation).
 
-* Обновлён плагин Yandex_parser до v0.2
-(Добавлен поиск и связь по сервису 'Яндекс_отзывы').
+* Updated Yandex_parser plugin to v0.2
+(Added search and link via 'Yandex_reviews' service).
 ===================================================================================
 
 ********
 *v1.2.6*
 ********
-* Расширена поисковая web-base Snoop > 1400+ сайтов.
+* Expanded the Snoop web-base search > 1400+ websites.
 ===================================================================================
 
 ********
 *v1.2.5*
 ********
-* В Snoop Project добавлен плагин: 'Yandex_parser'
-(подробнее о плагине в справке или документации).
+* Added 'Yandex_parser' plugin to Snoop Project
+(more details about the plugin in the help or documentation).
 
-* Расширена поисковая web-base Snoop до 1349 сайтов.
+* Expanded the Snoop web-base search to 1349 websites.
 ===================================================================================
 
 ********
 *v1.2.4*
 ********
-* В Snoop Project добавлены два плагина: 'GEO_IP/domain' и 'Reverse Vgeocoder'.
-(вызов плагинов, например, для сборки Snoop for Windows 'snoop.exe --module y'.
-  1. Плагин 'GEO_IP/domain' позволяет работать с IPv4/v6/domain/url в качестве цели,
-предоставляет статистические и визуализированные отчёты в CLI/txt/csv/maps.
-  2. Плагин 'Reverse Vgeocoder' простенький обратный геокодер).
-Подробнее о плагинах в справке или документации Snoop Project.
+* Added two plugins to Snoop Project: 'GEO_IP/domain' and 'Reverse Vgeocoder'.
+(calling plugins, for example, for compiling Snoop for Windows 'snoop.exe --module y'.
+  1. The 'GEO_IP/domain' plugin allows working with IPv4/v6/domain/url as a target,
+provides statistical and visualized reports in CLI/txt/csv/maps.
+  2. The 'Reverse Vgeocoder' plugin is a simple reverse geocoder).
+More details about plugins in Snoop Project help or documentation.
 
-* Для Snoop for Termux создана отдельная ветка.
-(Snoop for Termux имеет программные ограничения и не может работать с одним
-плагином: Reverse Vgeocoder).
+* Created a separate branch for Snoop for Termux.
+(Snoop for Termux has software limitations and cannot work with one
+plugin: Reverse Vgeocoder).
 
-* Расширена поисковая web-base Snoop до 1330 сайтов.
+* Expanded the Snoop web-base search to 1330 websites.
 ===================================================================================
 
 ********
 *v1.2.3*
 ********
-* Добавлена опция '--cert-on/-C'.
-(Вкл проверку сертификатов на серверах. По умолчанию проверка сертификатов на
-серверах отключена, что даёт меньше ошибок и больше положительных результатов при
-поиске "username". Пример: website:: 'Forumkinopoisk' с "проблемным" сертификатом).
+* Added '--cert-on/-C' option.
+(Turns on certificate checking on servers. By default, certificate checking on
+servers is disabled, which yields fewer errors and more positive results when
+searching for "username". Example: website:: 'Forumkinopoisk' with a "problematic" certificate).
 
-* Расширена поисковая web-base Snoop до 1220 сайтов.
+* Expanded the Snoop web-base search to 1220 websites.
 ===================================================================================
 
 ********
 *v1.2.2*
 ********
-* Для Snoop for GNU/Linux добавлен режим 'SNOOPninja'.
-(Режим поиска 'SNOOPninja' активирован по умолчанию в Snoop Full Version:
-ускорение поиска ~25% (в тандеме с опцией '--no-func/-n' поиск ускоряется на ~50%);
-экономия ОЗУ ~50%; повторные 'гибкие соединения' на 'сбойных' ресурсах).
-Для Snoop for Windows добавлена возможность:
-(повторные 'гибкие соединения' на 'сбойных' ресурсах).
+* Added 'SNOOPninja' mode for Snoop for GNU/Linux.
+('SNOOPninja' search mode is enabled by default in Snoop Full Version:
+search acceleration ~25% (in tandem with '--no-func/-n' option search accelerates by ~50%);
+RAM savings ~50%; repeated 'flexible connections' on 'problematic' resources).
+For Snoop for Windows added ability:
+(repeated 'flexible connections' on 'problematic' resources).
 
-* Добавлена опция для Snoop for GNU/Linux Full version: '--normal/-N':
-(смена режима:: SNOOPninja > нормальный режим поиска).
+* Added option for Snoop for GNU/Linux Full version: '--normal/-N':
+(mode change:: SNOOPninja > normal search mode).
 
-* В Snoop Full Version опция '-s' стала совместима с опцией '-w':
-(можно подключиться к обновляемой Snoop web_database online и произвести поиск на
-определённом выбранном website с учётом обновления базы Snoop).
+* In Snoop Full Version the '-s' option became compatible with '-w' option:
+(can connect to the updatable Snoop web_database online and perform a search on
+a specifically selected website taking into account the Snoop DB update).
 
-* В Snoop Full Version добавлена возможность персональных и глобальных оповещений.
+* In Snoop Full Version added capability for personal and global notifications.
 
-* Расширена поисковая web-base Snoop до 1200+ сайтов.
+* Expanded the Snoop web-base search to 1200+ websites.
 
-* Мелкие исправления:
-(улучшена обработка исключений; правки в информативном выводе; облегчена кодовая база;
-повышена стабильность приложения:: ПО не перезапускается при разрывах соединения;
-сочетание опций '--web-base/-w' и '--country/-c' больше не вызывает конфликтов).
+* Minor fixes:
+(improved exception handling; fixes in informative output; lightened codebase;
+increased app stability:: software does not restart upon connection drops;
+combining the '--web-base/-w' and '--country/-c' options no longer causes conflicts).
 ===================================================================================
 
 ************
@@ -668,214 +667,214 @@ Windows/Linux/Demo/Full/RU/Build) кроме EN версий. Дальнейша
 * English versions added.
 (EN Snoop for GNU/Linux and EN Snoop for Windows).
 
-* Добавлены в БД новые ресурсы.
-(В БД Snoop Full version > 1.1k websites).
+* Added new resources to DB.
+(In Snoop Full version DB > 1.1k websites).
 
-* Добавлена опция для Snoop Full version: '--web-base/-w'.
-(Подключиться для поиска 'username' к обновляемой и расширяемой) web_БД (Online).
+* Added option for Snoop Full version: '--web-base/-w'.
+(Connect to the updatable and expandable web_DB (Online) to search for 'username').
 
-* Поправлена опция '--save-report/-S'.
-(При выгрузке данных кодировка выбирается автоматически верная.
-Сохранённые некоторые 'проблемные' странички теперь не нужно конвертировать).
+* Fixed option '--save-report/-S'.
+(When uploading data the encoding is automatically chosen correctly.
+Some saved 'problematic' pages no longer need to be converted).
 
-* Snoop versions Source и Demo уравнены в правах.
-(Snoop Full version вышла на новый уровень).
+* Snoop versions Source and Demo equalized in rights.
+(Snoop Full version reached a new level).
 
-* К вербализации добавлено самотестирование сети в CLI.
+* Added network self-testing in CLI to verbose output.
 ($ python3 snoop.py -v username).
 
-* Обновлена опция '--list all'.
-(Визуализация/сравнение full/demo БД).
+* Updated option '--list all'.
+(Visualization/comparison of full/demo DB).
 
-* В Snoop Full version ускорен поиск на мощных ПК ~20%.
-(Весь поиск длится < 100с.).
+* In Snoop Full version search accelerated on powerful PCs ~20%.
+(Entire search lasts < 100s.).
 
-* В CLI обновлён информативный вывод: 'прогресс поиска'. Добавлены:
-(статус-бар; процент выполнения; предварительное расч.время до завершения поиска).
+* In CLI updated informative output: 'search progress'. Added:
+(status bar; completion percentage; estimated preliminary time to search completion).
 ===================================================================================
 
 ************
 *v1.2.0_rus*
 ************
-* Добавлена новая опция '--save-report/-S'.
-(При активации опции — идет выгрузка данных: сохраняются страницы
-найденных аккаунтов в HTML формате).
+* Added new option '--save-report/-S'.
+(Upon option activation — data comes out: pages of 
+found accounts are saved in HTML format).
 
-* Добавлены новые user agent-ы. При поиске agent выбирается рандомный.
-(Некоторые сайты отдают предпочтения (стабильные ответы) между человеком/роботом).
+* Added new user agents. When searching an agent is chosen randomly.
+(Some sites prefer (stable responses) between a human/robot).
 
-* Опция '--time/-t' принимает значение по умолчанию: = 9 секунд.
-(При хорошем интернет соединении этого времени достаточно, при слабом
-соединении опция '-t' доступна для изменения).
+* '--time/-t' option takes default value: = 9 seconds.
+(With a good internet connection this time is enough, with a weak
+connection the '-t' option is available to change).
 ===================================================================================
 
 ************
 *v1.1.9_rus*
 ************
-* Добавлены в БД новые ресурсы.
-(В БД > 1k websites).
+* Added new resources to DB.
+(In DB > 1k websites).
 
-* Слиты ветки в одну termux и master.
+* Merged branches termux and master into one.
 
-* Специально для Snoop записаны два soundtrack-a в жанре cyberpunk.
-(Автор: Metelkin Viktor, трек:: for snoop in cyberpunk.mp3.
-Автор: Zed Badley, трек:: Megapolis (remix).mp3).
+* Two cyberpunk soundtracks recorded specially for Snoop.
+(Author: Metelkin Viktor, track:: for snoop in cyberpunk.mp3.
+Author: Zed Badley, track:: Megapolis (remix).mp3).
 ===================================================================================
 
 ************
 *v1.1.8_rus*
 ************
-* Блокировка/коррекция бессмысленных запросов.
-(Номера телефонов — фильтруются; e-mails — корректируются).
+* Blocking/correction of meaningless requests.
+(Phone numbers — filtered; e-mails — corrected).
 
-* Добавлена возможность поиска username c пробелом.
+* Added ability to search username with space.
 ($ python3 snoop.py "ivanov ivan")
 
-* Добавлен новый метод детектирования username.salt.
+* Added new method for detecting username.salt.
 
-* Исправлена метрика времени/ошибок опции '--verbose/-v'.
+* Fixed time/errors metric of '--verbose/-v' option.
 
-* Обновлён HTML-формат.
-(Chrome потребляет больше ресурсов, чем другие браузеры).
+* Updated HTML format.
+(Chrome consumes more resources than other browsers).
 
-* Убрана опция '--csv'.
-(Результаты 'username.csv' с расширенной метрикой пишутся теперь по умолчанию).
+* Removed '--csv' option.
+(Results 'username.csv' with extended metric now written by default).
 
-* Добавлены в БД новые ресурсы.
-(В БД > 800 websites).
+* Added new resources to DB.
+(In DB > 800 websites).
 
-* Утрата нескольких интернет-ресурсов.
+* Loss of several internet resources.
 ===================================================================================
 
 ************
 *v1.1.7_rus*
 ************
-* Обновлён информативный вывод.
+* Updated informative output.
 
-* Добавлены в БД новые ресурсы:
+* Added new resources to DB:
 ===================================================================================
 
 ************
 *v1.1.6_rus*
 ************
-(В БД > 650 websites).
+(In DB > 650 websites).
 
-* Добавлены в БД новые ресурсы:
+* Added new resources to DB:
 ===================================================================================
 
 ************
 *v1.1.5_rus*
 ************
-* Обновлён информативный вывод с учётом Internet Censorship.
+* Updated informative output taking into account Internet Censorship.
 
-* Поддержка инфовывода на OS Windows.
+* Support for info output on Windows OS.
 
-* Мелкие исправления.
+* Minor fixes.
 ===================================================================================
 
 ************
 *v1.1.4_rus*
 ************
-* Улучшена визуализация БД Snoop при помощи опции '--list all'.
+* Improved visualization of Snoop DB using '--list all' option.
 
-* Добавлены в БД новые ресурсы:
+* Added new resources to DB:
 ===================================================================================
 
 ************
 *v1.1.3_rus*
 ************
-* В html теперь доступна сортировка результатов: — по странам.
-(Сортировка по умолчанию: — по алфавиту имён websites.
-Высокая визуализация результатов поиска; визуализация БД по опции '--list all').
+* Result sorting now available in html: — by countries.
+(Default sorting: — alphabetical by website names.
+High visualization of search results; DB visualization by '--list all' option).
 
-* Добавлены новые опции: '--country/-с' и '--userload/-u'.
-('--country/-с' — во время поиска в CLI (GNU/Linux/Termux) выводятся отсортированные флаги государств.
-Результаты сортируются по странам, а не по алфавиту websites и сохраняются в html).
-(--userload/-u' — указать файл.txt с именами разыскиваемых пользователей).
+* Added new options: '--country/-c' and '--userload/-u'.
+('--country/-c' — sorted state flags are displayed during search in CLI (GNU/Linux/Termux).
+Results sorted by countries, not by website alphabet, and saved in html).
+('--userload/-u' — specify a .txt file with names of sought users).
 
-* Изменены/отредактированы основные опции.
+* Changed/edited main options.
 
-* Добавлены в БД новые ресурсы:
+* Added new resources to DB:
 
-* Почищена БД от дубликатов.
-(В БД > 500 websites).
+* Cleaned DB from duplicates.
+(In DB > 500 websites).
 ===================================================================================
 
 ************
 *v1.1.2_rus*
 ************
-* Улучшена навигация по работе с html.
+* Improved navigation for working with html.
 
-* Улучшен алгоритм детектирования.
-(Меньше ложных результатов на кириллическом username).
+* Improved detection algorithm.
+(Fewer false positives on Cyrillic username).
 
-* Результаты поиска отсортированы по расширению.
+* Search results sorted by extension.
 
-* Добавлены в БД новые ресурсы:
+* Added new resources to DB:
 ===================================================================================
 
 ************
 *v1.1.0_rus*
 ************
-* Добавлен формат 'html'.
-Анализировать положительные результаты поиска теперь можно прямо в браузере.
-Web browser с результатами поиска открывается после завершения поиска username.
+* Added 'html' format.
+It is now possible to analyze positive search results directly in the browser.
+Web browser with search results opens upon search completion for the username.
 
-* Опция '--no-func/-n' отключает цвета/звук/браузер.
+* The '--no-func/-n' option disables colors/sound/browser.
 
-* Результаты поиска сохраняются в каталоге 'results'.
+* Search results saved in the 'results' directory.
 
-* Поправлены опции Snoop для работы на OS Windows.
+* Fixed Snoop options for working on Windows OS.
 
-* Функция обновления Snoop работает теперь и на OS Windows, проверено на win7/32.
-(Требуется ПО Git)
+* Snoop update function now works on Windows OS, tested on win7/32.
+(Git software required)
 ===================================================================================
 
 ************
 *v1.0.6_rus*
 ************
-* Добавлена отдельная ветка Termux (Android) для Snoop.
+* Added a separate Termux (Android) branch for Snoop.
 
-* В основную ветку master (GNU/Linux) для Snoop добавлен звук.
+* Added sound to the main master branch (GNU/Linux) for Snoop.
 $ pip3 install playsound
 
-* Опция '-n' отключает и цвета в терминале и звук (GNU/Linux).
+* Option '-n' disables both colors in terminal and sound (GNU/Linux).
 
-* В ЧС добавлен сайт с медленным ответом (Zomato).
+* Added a website with slow response to blacklist (Zomato).
 ===================================================================================
 
 ************
 *v1.0.4_rus*
 ************
-* Мелкие исправления и улучшения.
+* Minor fixes and improvements.
 
-* Поправлены некоторые ответы от websites.
+* Fixed some responses from websites.
 ===================================================================================
 
 ************
 *v1.0.2_rus*
 ************
-* Добавлена возможность запускать Snoop на OS Windows с ограничением функционала.
+* Added ability to run Snoop on Windows OS with limited functionality.
 ===================================================================================
 
 ************
 *v1.0.0_rus*
 ************
-Обновлена лицензия.
+Updated license.
 
-* Добавлено огромное кол-во новых websites (в том числе, благодаря манипуляции HTTP-заголовками):
-для сравнения Sherlock на GNU/Kali Linux/Parrot ищет по — 198 сайтам, Snoop ищет по — 337 сайтам.
+* Added huge amount of new websites (including thanks to HTTP-header manipulation):
+for comparison Sherlock on GNU/Kali Linux/Parrot searches on — 198 sites, Snoop searches on — 337 sites.
 
-* Добавлены новые опции:
-'--list'; '--update'; '--sort'; '--donate'; переработана опция '--version'.
+* Added new options:
+'--list'; '--update'; '--sort'; '--donate'; reworked '--version' option.
 
-* Snoop Project — русифицирован.
+* Snoop Project — translated to Russian (Russified).
 
-* Добавлен тестовый файл "example_data.json" для внесения своих новых websites в БД.
+* Added test file "example_data.json" for adding your own new websites to DB.
 
-* Изменен user-agent на более популярный.
+* Changed user-agent to a more popular one.
 
-* Убраны из БД некоторые недоступные для Snoop сайты, которые затормаживали работу ПО.
+* Removed some sites inaccessible to Snoop from DB, which slowed down software operation.
 
-* Обновлён информативный вывод в CLI и в файле сохранения "username.txt".
+* Updated informative output in CLI and in save file "username.txt".
 ===================================================================================

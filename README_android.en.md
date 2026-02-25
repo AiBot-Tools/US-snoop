@@ -175,7 +175,7 @@ search arguments:
 # To search for just one user:
 $ python3 snoop.py username1
 # Or, for example, Cyrillic is supported:
-$ python3 snoop.py олеся
+$ python3 snoop.py olesya
 # To search for a name containing a space:
 $ python3 snoop.py "bob dylan"
 $ python3 snoop.py bob_dylan

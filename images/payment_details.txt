@@ -1,6 +1,6 @@
-﻿ЮMoney:: 4100111364257544
-Сбер_карта:: 2202208013277075
+﻿YooMoney:: 4100111364257544
+Sber_card:: 2202208013277075
 Raiffeisen_card:: 2200300512321074
-По номеру телефона (СБП/Банк Юмани):: +79004753581
+By phone number (FPS/YooMoney Bank):: +79004753581
 
-Оплатить софт можно по любым реквизитам, но самым предпочтительным способом является — СБП (перевод по номеру телефона без комиссий с карты любого банка).
+You can pay for the software using any banking details, but the most preferred method is — FPS (transfer by phone number without commission from any bank card).
